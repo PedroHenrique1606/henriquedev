@@ -1,6 +1,6 @@
 interface TopicProps {
     title: string;
-    titleabsolute: string;
+    titleabsolute?: string;
     titledecoration: string;
 }
 
