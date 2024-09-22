@@ -3,7 +3,7 @@ import PedroLogo from "@/assets/logo-petrus.svg"
 
 const Navbar: React.FC = () => {
     return (
-        <nav className="bg-customBlueSecondary p-5 fixed top-0 w-full">
+        <nav className="bg-customBlueSecondary p-5 fixed top-0 w-full z-[9999]">
             <div className="container mx-auto flex justify-evenly items-center">
                 <div className="text-white text-xl font-bold flex items-center gap-4">
                     <Image src={PedroLogo} alt="Logo of Pedro Henrique" className="w-7" />

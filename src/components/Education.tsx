@@ -13,10 +13,10 @@ export const Education: React.FC<EducationProps> = ({ dateRange, course, institu
                 {dateRange}
             </p>
             <p className="text-white">
-                {course} -
-                <p className="text-slate-300">
+                {course} -{' '}
+                <span className="text-slate-300">
                     {institution}
-                </p>
+                </span>
             </p>
         </div>
     );

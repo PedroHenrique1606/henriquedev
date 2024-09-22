@@ -1,24 +1,25 @@
-import PedroProfile from '@/assets/pedro-profile.svg';
+import AngularLogo from '@/assets/angularlogo.svg';
+import CSSLogo from '@/assets/csslogo.svg';
+import FastifyLogo from '@/assets/fastifylogo.svg';
+import HTMLLogo from '@/assets/htmllogo.svg';
+import JavaScriptLogo from '@/assets/javascriptlogo.svg';
+import NextJsLogo from '@/assets/nextjslogo.svg';
+import NodeJsLogo from '@/assets/nodejslogo.svg';
 import PedroProfileVariant from '@/assets/pedro-profile-variant.svg';
+import PedroProfile from '@/assets/pedro-profile.svg';
+import ReactLogo from '@/assets/reactjs.svg';
+import ReactNativeLogo from '@/assets/reactnativelogo.svg';
+import TailwindCSSLogo from '@/assets/tailwindcsslogo.svg';
+import TypeScriptLogo from '@/assets/typescriptlogo.svg';
 import { Button } from "@/components/Button";
+import { Education } from '@/components/Education';
+import { Indicators } from '@/components/Indicators';
 import Navbar from "@/components/Navbar";
+import { ProjectsModal } from '@/components/ProjectsModal';
+import { Skills } from '@/components/Skills';
 import { Topic } from '@/components/Topic';
 import { ArrowCircleRight, ArrowDown, ArrowLineDown, GithubLogo, InstagramLogo, LinkedinLogo } from '@phosphor-icons/react/dist/ssr';
 import Image from "next/image";
-import { Indicators } from '@/components/Indicators';
-import { Education } from '@/components/Education';
-import { Skills } from '@/components/Skills';
-import ReactLogo from '@/assets/reactjs.svg'
-import HTMLLogo from '@/assets/htmllogo.svg'
-import CSSLogo from '@/assets/csslogo.svg'
-import JavaScriptLogo from '@/assets/javascriptlogo.svg'
-import TailwindCSSLogo from '@/assets/tailwindcsslogo.svg'
-import AngularLogo from '@/assets/angularlogo.svg'
-import ReactNativeLogo from '@/assets/reactnativelogo.svg'
-import NextJsLogo from '@/assets/nextjslogo.svg'
-import NodeJsLogo from '@/assets/nodejslogo.svg'
-import FastifyLogo from '@/assets/fastifylogo.svg'
-import TypeScriptLogo from '@/assets/typescriptlogo.svg'
 
 export default function Home() {
   return (
@@ -28,13 +29,13 @@ export default function Home() {
       </div>
       <section className="flex items-center justify-center mx-20">
         <div className='flex flex-col space-y-7 mx-8'>
-          <a href='https://github.com/PedroHenrique1606'>
+          <a target='_blank' href='https://github.com/PedroHenrique1606'>
             <GithubLogo size={28} className='text-purplePrimary' />
           </a>
-          <a href='https://www.instagram.com/pedrohenrique.trc/'>
+          <a target='_blank' href='https://www.instagram.com/pedrohenrique.trc/'>
             <InstagramLogo size={28} className='text-purplePrimary' />
           </a>
-          <a href='https://www.linkedin.com/in/pedro-henrique-melo-da-silva-a7a700231/'>
+          <a target='_blank' href='https://www.linkedin.com/in/pedro-henrique-melo-da-silva-a7a700231/'>
             <LinkedinLogo size={28} className='text-purplePrimary' />
           </a>
         </div>
@@ -98,7 +99,26 @@ export default function Home() {
             <Skills text='TYPESCRIPT' icon={TypeScriptLogo} />
           </div>
         </div>
-      </section >
-    </div >
+      </section>
+      <Topic title='Portfolio' titledecoration='Portfolio' />
+      <section className="flex items-center justify-center space-x-5">
+        <div className='flex flex-col space-y-5'>
+          <ProjectsModal />
+          <ProjectsModal />
+          <ProjectsModal />
+          <ProjectsModal />
+          <ProjectsModal />
+          <ProjectsModal />
+        </div>
+        <div className='flex flex-col space-y-5'>
+          <ProjectsModal />
+          <ProjectsModal />
+          <ProjectsModal />
+          <ProjectsModal />
+          <ProjectsModal />
+          <ProjectsModal />
+        </div>
+      </section>
+    </div>
   );
 }

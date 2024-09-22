@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ButtonProps {
     text: string;
-    destineLink: string;
+    destineLink?: string;
     icon?: React.ElementType;
 }
 
