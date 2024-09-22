@@ -8,6 +8,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
+import VideoPlayer from "./VideoPlayer"
 
 export function ProjectsModal() {
     return (
@@ -26,18 +27,16 @@ export function ProjectsModal() {
                     </p>
                 </div>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] bg-customBlue">
+            <DialogContent className="bg-customBlue">
                 <DialogHeader>
                     <DialogTitle className="text-white font-semibold text-xl">Project</DialogTitle>
                     <DialogDescription className="text-white">
                         This project consists of helping you to make a checklist of your day-to-day life, recording the habits made and accurately tracking your daily habits.
                     </DialogDescription>
                 </DialogHeader>
-                <div>
-                    <img src="https://i.makeagif.com/media/3-27-2021/UNHe0N.gif" alt="" />
-                </div>
+                <VideoPlayer />
                 <DialogFooter>
-                    <Button text="See the Project" destineLink="https://habits-omega.vercel.app/"/>
+                    <Button text="See the Project" destineLink="https://habits-omega.vercel.app/" />
                 </DialogFooter>
             </DialogContent>
         </Dialog>
