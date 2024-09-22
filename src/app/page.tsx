@@ -11,6 +11,8 @@ import ReactLogo from '@/assets/reactjs.svg';
 import ReactNativeLogo from '@/assets/reactnativelogo.svg';
 import TailwindCSSLogo from '@/assets/tailwindcsslogo.svg';
 import TypeScriptLogo from '@/assets/typescriptlogo.svg';
+import LogoBlog from '@/assets/blogcapa.svg'
+import LogoTravelling from '@/assets/travellingcapa.svg'
 import { Button } from "@/components/Button";
 import { Education } from '@/components/Education';
 import { Indicators } from '@/components/Indicators';
@@ -103,20 +105,10 @@ export default function Home() {
       <Topic title='Portfolio' titledecoration='Portfolio' />
       <section className="flex items-center justify-center space-x-5">
         <div className='flex flex-col space-y-5'>
-          <ProjectsModal />
-          <ProjectsModal />
-          <ProjectsModal />
-          <ProjectsModal />
-          <ProjectsModal />
-          <ProjectsModal />
+          <ProjectsModal coverImage={LogoBlog} sourceVideo='https://hospedage.vercel.app/blog.mp4' titleModalHover='Blog Petrus' descriptionProject='Blog make with Astro' titleOfVideo='Blog Petrus' subtitleOfVideo='Your developer Blog' linkCoverVideo='https://hospedage.vercel.app/blog-cover.png' destinateLinkButtonGithub='https://github.com/PedroHenrique1606/blog-petrus' destinateLinkButtonWeb='https://blogpetrus.netlify.app/' />
         </div>
         <div className='flex flex-col space-y-5'>
-          <ProjectsModal />
-          <ProjectsModal />
-          <ProjectsModal />
-          <ProjectsModal />
-          <ProjectsModal />
-          <ProjectsModal />
+          <ProjectsModal coverImage={LogoTravelling} sourceVideo='https://hospedage.vercel.app/travelling.mp4' titleModalHover='Travelling' descriptionProject='Landing Page from travel enterprise with NextJS, TypeScript, Tailwind and StoryBook' titleOfVideo='Blog Petrus' subtitleOfVideo='Your developer Blog' linkCoverVideo='https://hospedage.vercel.app/travelcover.png' destinateLinkButtonGithub='https://github.com/PedroHenrique1606/travelling' destinateLinkButtonWeb='https://travelling-ivory.vercel.app/' />
         </div>
       </section>
     </div>
