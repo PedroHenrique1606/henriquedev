@@ -66,7 +66,7 @@ export default function Home() {
             <Indicators numberIndicator='30' titleIndicator='Projects' conectiveIndicator='on' predicateIndicator='GitHub' />
             <Indicators numberIndicator='∞' titleIndicator='GitHub' conectiveIndicator='of' predicateIndicator='coffee' />
           </div>
-          <Button text="Download CV" destineLink="https://drive.google.com/file/d/1ApR_koDeJidaVLg3YDK1C1fkUMOieDhE/view" icon={ArrowLineDown} />
+          <Button text="Download CV" destineLink="https://drive.google.com/file/d/1ieh6-wcPqhM11TVWQ12wH5UDJDIf7Jry/view?usp=sharing" icon={ArrowLineDown} />
         </div>
       </section>
       <Topic title='Experience' titledecoration='Experience' />
@@ -106,8 +106,10 @@ export default function Home() {
       <section className="flex items-center justify-center space-x-5">
         <div className='flex flex-col space-y-5'>
           <ProjectsModal coverImage={LogoBlog} sourceVideo='https://hospedage.vercel.app/blog.mp4' titleModalHover='Blog Petrus' descriptionProject='Blog make with Astro' titleOfVideo='Blog Petrus' subtitleOfVideo='Your developer Blog' linkCoverVideo='https://hospedage.vercel.app/blog-cover.png' destinateLinkButtonGithub='https://github.com/PedroHenrique1606/blog-petrus' destinateLinkButtonWeb='https://blogpetrus.netlify.app/' />
+          <ProjectsModal coverImage={LogoBlog} sourceVideo='https://hospedage.vercel.app/blog.mp4' titleModalHover='Blog Petrus' descriptionProject='Blog make with Astro' titleOfVideo='Blog Petrus' subtitleOfVideo='Your developer Blog' linkCoverVideo='https://hospedage.vercel.app/blog-cover.png' destinateLinkButtonGithub='https://github.com/PedroHenrique1606/blog-petrus' destinateLinkButtonWeb='https://blogpetrus.netlify.app/' />
         </div>
         <div className='flex flex-col space-y-5'>
+          <ProjectsModal coverImage={LogoTravelling} sourceVideo='https://hospedage.vercel.app/travelling.mp4' titleModalHover='Travelling' descriptionProject='Landing Page from travel enterprise with NextJS, TypeScript, Tailwind and StoryBook' titleOfVideo='Blog Petrus' subtitleOfVideo='Your developer Blog' linkCoverVideo='https://hospedage.vercel.app/travelcover.png' destinateLinkButtonGithub='https://github.com/PedroHenrique1606/travelling' destinateLinkButtonWeb='https://travelling-ivory.vercel.app/' />
           <ProjectsModal coverImage={LogoTravelling} sourceVideo='https://hospedage.vercel.app/travelling.mp4' titleModalHover='Travelling' descriptionProject='Landing Page from travel enterprise with NextJS, TypeScript, Tailwind and StoryBook' titleOfVideo='Blog Petrus' subtitleOfVideo='Your developer Blog' linkCoverVideo='https://hospedage.vercel.app/travelcover.png' destinateLinkButtonGithub='https://github.com/PedroHenrique1606/travelling' destinateLinkButtonWeb='https://travelling-ivory.vercel.app/' />
         </div>
       </section>
