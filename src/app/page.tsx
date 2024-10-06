@@ -8,15 +8,16 @@ import NextJsLogo from "@/assets/nextjslogo.svg";
 import NodeJsLogo from "@/assets/nodejslogo.svg";
 import PedroProfileVariant from "@/assets/pedro-profile-variant.svg";
 import PedroProfile from "@/assets/pedro-profile.svg";
+import PlannerAppCapa from "@/assets/plannerapp.svg";
+import PlannerWebCapa from "@/assets/plannerwebcapa.svg";
 import ReactLogo from "@/assets/reactjs.svg";
 import ReactNativeLogo from "@/assets/reactnativelogo.svg";
 import TailwindCSSLogo from "@/assets/tailwindcsslogo.svg";
 import LogoTravelling from "@/assets/travellingcapa.svg";
 import TypeScriptLogo from "@/assets/typescriptlogo.svg";
-import PlannerWebCapa from "@/assets/plannerwebcapa.svg";
-import PlannerAppCapa from "@/assets/plannerapp.svg";
 import { Button } from "@/components/Button";
 import { Education } from "@/components/Education";
+import Footer from "@/components/Footer";
 import { Indicators } from "@/components/Indicators";
 import Navbar from "@/components/Navbar";
 import { ProjectsModal } from "@/components/ProjectsModal";
@@ -262,6 +263,7 @@ export default function Home() {
           />
         </div>
       </section>
+      <Footer />
     </div>
   );
 }

@@ -19,7 +19,7 @@ interface ProjectsModalProps {
   titleOfVideo: string;
   subtitleOfVideo: string;
   linkCoverVideo: string;
-  destinateLinkButtonWeb?: string; // Torna opcional
+  destinateLinkButtonWeb?: string; 
   destinateLinkButtonGithub: string;
 }
 
