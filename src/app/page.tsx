@@ -259,7 +259,6 @@ export default function Home() {
             subtitleOfVideo="Your App trip"
             linkCoverVideo="https://hospedandodnv.vercel.app/plannerapp.png"
             destinateLinkButtonGithub="https://github.com/PedroHenrique1606/travelling"
-            destinateLinkButtonWeb="https://travelling-ivory.vercel.app/"
           />
         </div>
       </section>
