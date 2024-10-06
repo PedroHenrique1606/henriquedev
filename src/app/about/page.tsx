@@ -1,18 +1,7 @@
 "use client";
-import { Button } from "@/components/Button";
 import Footer from "@/components/Footer";
-import { Indicators } from "@/components/Indicators";
 import Navbar from "@/components/Navbar";
 import { OrbitingCirclesDemo } from "@/components/OrbitCircles";
-import { Topic } from "@/components/Topic";
-import {
-  GithubLogo,
-  InstagramLogo,
-  LinkedinLogo,
-  ArrowCircleRight,
-  ArrowLineDown,
-} from "@phosphor-icons/react";
-import { ArrowDown } from "lucide-react";
 
 export default function About() {
   return (
