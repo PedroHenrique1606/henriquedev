@@ -35,12 +35,12 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="space-y-36">
+    <div className="space-y-60">
       <div className="flex items-center justify-center">
         <Navbar />
       </div>
-      <section className="flex items-center justify-center mx-20">
-        <div className="flex flex-col space-y-7 mx-8">
+      <section className="flex items-center justify-center mx-8">
+        <div className="hidden md:flex flex-col space-y-7 mx-8">
           <a target="_blank" href="https://github.com/PedroHenrique1606">
             <GithubLogo size={28} className="text-purplePrimary" />
           </a>
@@ -57,12 +57,20 @@ export default function Home() {
             <LinkedinLogo size={28} className="text-purplePrimary" />
           </a>
         </div>
-        <div className="space-y-6 md:mr-16">
-          <h1 className="font-semibold text-white text-6xl">
+        <div className="space-y-6 md:mr-16 ">
+          <div className="flex md:hidden items-center justify-center relative">
+            <div className="absolute bg-purplePrimary blur-lg rounded-full w-64 h-64 animate-pulse"></div>
+            <Image
+              src={PedroProfile}
+              alt="Profile Picture of Pedro Henrique"
+              className="relative w-60 h-60 rounded-full shadow-lg border-4 border-purplePrimary"
+            />
+          </div>
+          <h1 className="font-semibold text-white text-3xl md:text-6xl">
             Hi! I&apos;m Pedro
             <br /> Henrique
           </h1>
-          <h3 className="text-slate-400 font-semibold text-lg">
+          <h3 className="text-slate-400 font-semibold text-sm md:text-lg">
             Web Developer
           </h3>
           <p className="text-slate-400 leading-6">
@@ -77,18 +85,22 @@ export default function Home() {
             icon={ArrowCircleRight}
           />
         </div>
-        <Image
-          src={PedroProfile}
-          alt="Profile Picture of Pedro Henrique"
-          className="w-3/12 m-5"
-        />
+        <div className="hidden md:flex items-center justify-center relative">
+          <div className="absolute bg-purplePrimary blur-lg rounded-full w-full h-full animate-pulse"></div>
+          <Image
+            src={PedroProfile}
+            alt="Profile Picture of Pedro Henrique"
+            className="relative rounded-full shadow-lg border-4 border-purplePrimary"
+            layout="intrinsic"
+          />
+        </div>
       </section>
       <div className="flex items-center justify-center gap-3">
         <p className="text-white font-medium">Scroll Down</p>
         <ArrowDown size={24} className="text-purplePrimary animate-bounce" />
       </div>
       <Topic title="About Me" titleabsolute="About" titledecoration="Me" />
-      <section className="flex items-center justify-center mx-20 space-x-8">
+      <section className="flex items-center justify-center mx-20">
         <Image
           src={PedroProfileVariant}
           alt="Profile Picture of Pedro Henrique"
@@ -213,7 +225,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <Topic title="Portfolio" titledecoration="Portfolio" />
+      <Topic title="Projects" titledecoration="Projects" />
       <section className="flex items-center justify-center space-x-5">
         <div className="flex flex-col space-y-5">
           <ProjectsModal
