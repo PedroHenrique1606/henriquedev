@@ -35,7 +35,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="space-y-60">
+    <div className="space-y-32 md:space-y-60">
       <div className="flex items-center justify-center">
         <Navbar />
       </div>
