@@ -166,8 +166,8 @@ export default function Home() {
             Check out some of my skills below.
           </p>
         </div>
-        <div className="flex space-x-5 w-full md:w-2/5">
-          <div className="flex-col space-y-5 w-full">
+        <div className="flex flex-col md:flex-row w-full md:w-2/5 md:items-start items-center md:justify-start justify-center gap-5">
+          <div className="flex flex-col gap-5 w-full">
             <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max">
               Education
             </p>
@@ -183,7 +183,7 @@ export default function Home() {
             />
             <Education
               dateRange="2022 - 2022"
-              course="Monitoring of Assembly and Installation of Systems "
+              course="Monitoring of Assembly and Installation of Systems"
               institution="EEEP Leonel de Moura Brizola"
             />
             <Education
@@ -203,11 +203,12 @@ export default function Home() {
             />
             <Education
               dateRange="2024 - In progress"
-              course="Telecomunication Engeneering"
+              course="Telecommunication Engineering"
               institution="IFCE"
             />
           </div>
-          <div className="flex-col space-y-5 w-full">
+
+          <div className="flex flex-col gap-5 w-full">
             <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max">
               Skills
             </p>
@@ -224,10 +225,11 @@ export default function Home() {
             <Skills text="TYPESCRIPT" icon={TypeScriptLogo} />
           </div>
         </div>
+
       </section>
       <Topic title="Projects" titledecoration="Projects" />
-      <section className="flex items-center justify-center space-x-5">
-        <div className="flex flex-col space-y-5">
+      <section className="flex flex-wrap items-center justify-center gap-5">
+        <div className="flex flex-col gap-5 w-full md:w-auto items-center">
           <ProjectsModal
             coverImage={LogoBlog}
             sourceVideo="https://hospedage.vercel.app/blog.mp4"
@@ -250,7 +252,8 @@ export default function Home() {
             destinateLinkButtonGithub="https://github.com/PedroHenrique1606/planner-web"
           />
         </div>
-        <div className="flex flex-col space-y-5">
+
+        <div className="flex flex-col gap-5 w-full md:w-auto items-center">
           <ProjectsModal
             coverImage={LogoTravelling}
             sourceVideo="https://hospedage.vercel.app/travelling.mp4"
