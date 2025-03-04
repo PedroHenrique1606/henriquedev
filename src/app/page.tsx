@@ -100,33 +100,30 @@ export default function Home() {
         <ArrowDown size={24} className="text-purplePrimary animate-bounce" />
       </div>
       <Topic title="About Me" titleabsolute="About" titledecoration="Me" />
-      <section className="flex items-center justify-center mx-20">
+      <section className="flex flex-col md:flex-row items-center justify-center mx-5 md:mx-20 text-center md:text-left">
         <Image
           src={PedroProfileVariant}
           alt="Profile Picture of Pedro Henrique"
-          className="w-3/12 m-5"
+          className="w-6/12 sm:w-4/12 md:w-3/12 m-5"
         />
         <div className="space-y-6 md:mr-16">
-          <h4 className="font-semibold text-white text-3xl">Know Me</h4>
-          <h4 className="font-medium text-white text-xl flex gap-2">
+          <h4 className="font-semibold text-white text-2xl md:text-3xl">Know Me</h4>
+          <h4 className="font-medium text-white text-lg md:text-xl flex flex-wrap justify-center md:justify-start gap-2">
             I&apos;m a <p className="text-purplePrimary">Pedro Henrique</p>
           </h4>
-          <h3 className="text-slate-400 font-semibold text-lg">
+          <h3 className="text-slate-400 font-semibold text-base md:text-lg">
             Web Developer
           </h3>
-          <p className="text-slate-400 leading-6">
-            Hello, my name is Pedro Henrique! I&apos;m a computer network
-            <br /> technician and self-taught front-end developer living in
-            Brazil.
-            <br />I am able to develop modern, responsive websites, with
-            <br />
-            scalability, clean code and easy maintenance. Since I was a <br />
-            child, I have always had a passion for technology and curiosity in{" "}
-            <br />
-            discovering new areas and how everything works, which is how
-            <br /> the desire to continue being a web developer awakened in me.
+          <p className="text-slate-400 leading-6 text-sm md:text-base">
+            Hello, my name is Pedro Henrique! I&apos;m a computer network technician
+            and self-taught front-end developer living in Brazil. I am able to develop
+            modern, responsive websites with scalability, clean code, and easy
+            maintenance. Since I was a child, I have always had a passion for
+            technology and curiosity in discovering new areas and how everything
+            works, which is how the desire to continue being a web developer awakened
+            in me.
           </p>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap justify-center md:justify-start gap-2">
             <Indicators
               numberIndicator="25"
               titleIndicator="Certificates"
@@ -146,13 +143,16 @@ export default function Home() {
               predicateIndicator="coffee"
             />
           </div>
-          <Button
-            text="Download CV"
-            destineLink="https://drive.google.com/file/d/1ieh6-wcPqhM11TVWQ12wH5UDJDIf7Jry/view?usp=sharing"
-            icon={ArrowLineDown}
-          />
+          <div className="flex justify-center md:justify-start">
+            <Button
+              text="Download CV"
+              destineLink="https://drive.google.com/file/d/1ieh6-wcPqhM11TVWQ12wH5UDJDIf7Jry/view?usp=sharing"
+              icon={ArrowLineDown}
+            />
+          </div>
         </div>
       </section>
+
       <Topic title="Experience" titledecoration="Experience" />
       <section className="flex items-center justify-center space-y-8 flex-col mx-3">
         <div className="space-y-4">
