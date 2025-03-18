@@ -4,6 +4,8 @@ import {
   LinkedinLogo,
 } from "@phosphor-icons/react/dist/ssr";
 
+const actualDate = new Date().getFullYear()
+
 const Footer = () => {
   return (
     <footer className="bg-purpleSecondary px-6 md:px-20 lg:px-40 py-12 flex flex-col space-y-12">
@@ -27,7 +29,7 @@ const Footer = () => {
             <a className="font-medium no-underline text-gray-200" href="/" target="_blank">
               Experience
             </a>
-            <a className="font-medium no-underline text-gray-200" href="/" target="_blank">
+            <a className="font-medium no-underline text-gray-200" href="https://pedrohenriquedev.netlify.app/" target="_blank">
               Portfolio
             </a>
             <a className="font-medium no-underline text-gray-200" href="https://blogpetrus.netlify.app/" target="_blank">
@@ -54,7 +56,7 @@ const Footer = () => {
 
       <div className="flex justify-center items-center text-center">
         <p className="text-gray-200 tracking-wider text-sm md:text-base">
-          © 2024 by Pedro Henrique. All rights reserved.
+          © {actualDate} by Pedro Henrique. All rights reserved.
         </p>
       </div>
     </footer>
