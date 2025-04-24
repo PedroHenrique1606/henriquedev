@@ -23,6 +23,7 @@ import Navbar from "@/components/Navbar";
 import { ProjectsModal } from "@/components/ProjectsModal";
 import { Skills } from "@/components/Skills";
 import { Topic } from "@/components/Topic";
+import { HyperText } from "@/components/ui/hyper-text";
 import {
   ArrowCircleRight,
   ArrowDown,
@@ -35,7 +36,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="space-y-60">
+    <div className="space-y-32 md:space-y-60">
       <div className="flex items-center justify-center">
         <Navbar />
       </div>
@@ -66,10 +67,7 @@ export default function Home() {
               className="relative w-60 h-60 rounded-full shadow-lg border-4 border-purplePrimary"
             />
           </div>
-          <h1 className="font-semibold text-white text-3xl md:text-6xl">
-            Hi! I&apos;m Pedro
-            <br /> Henrique
-          </h1>
+          <HyperText className="font-semibold text-white text-3xl md:text-6xl">Hi! I&apos;m Pedro Henrique</HyperText>
           <h3 className="text-slate-400 font-semibold text-sm md:text-lg">
             Web Developer
           </h3>
@@ -104,9 +102,9 @@ export default function Home() {
         <Image
           src={PedroProfileVariant}
           alt="Profile Picture of Pedro Henrique"
-          className="w-6/12 sm:w-4/12 md:w-3/12 m-5"
+          className="w-6/12 sm:w-4/12 m-5"
         />
-        <div className="space-y-6 md:mr-16">
+        <div className="space-y-6">
           <h4 className="font-semibold text-white text-2xl md:text-3xl">Know Me</h4>
           <h4 className="font-medium text-white text-lg md:text-xl flex flex-wrap justify-center md:justify-start gap-2">
             I&apos;m a <p className="text-purplePrimary">Pedro Henrique</p>
@@ -146,7 +144,7 @@ export default function Home() {
           <div className="flex justify-center md:justify-start">
             <Button
               text="Download CV"
-              destineLink="https://drive.google.com/file/d/1ieh6-wcPqhM11TVWQ12wH5UDJDIf7Jry/view?usp=sharing"
+              destineLink="https://drive.google.com/file/d/1qRoBqRIEEz_FW9u6b0VHHnk73EAhcHDG/view?usp=sharing"
               icon={ArrowLineDown}
             />
           </div>
@@ -166,24 +164,29 @@ export default function Home() {
             Check out some of my skills below.
           </p>
         </div>
-        <div className="flex space-x-5 w-full md:w-2/5">
-          <div className="flex-col space-y-5 w-full">
+        <div className="flex flex-col md:flex-row w-full md:w-2/5 md:items-start items-center md:justify-start justify-center gap-5">
+          <div className="flex flex-col gap-5 w-full">
             <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max">
               Education
             </p>
             <Education
+              dateRange="2025 - In Progress"
+              course="Bachelor's Degree in Software Engineering"
+              institution="Estácio"
+            />
+            <Education
+              dateRange="2024 - At the moment"
+              course="Web Developer"
+              institution="ArgoTech"
+            />
+            <Education
+              dateRange="2024 - On hold"
+              course="Telecommunication Engineering"
+              institution="IFCE"
+            />
+            <Education
               dateRange="2021 - 2023"
               course="Computer Network"
-              institution="EEEP Leonel de Moura Brizola"
-            />
-            <Education
-              dateRange="2021 - 2021"
-              course="Analysis and Programming Monitoring"
-              institution="EEEP Leonel de Moura Brizola"
-            />
-            <Education
-              dateRange="2022 - 2022"
-              course="Monitoring of Assembly and Installation of Systems "
               institution="EEEP Leonel de Moura Brizola"
             />
             <Education
@@ -197,17 +200,18 @@ export default function Home() {
               institution="ArgoTech"
             />
             <Education
-              dateRange="2024 - At the moment"
-              course="Web Developer"
-              institution="ArgoTech"
+              dateRange="2022 - 2022"
+              course="Monitoring of Assembly and Installation of Systems"
+              institution="EEEP Leonel de Moura Brizola"
             />
             <Education
-              dateRange="2024 - In progress"
-              course="Telecomunication Engeneering"
-              institution="IFCE"
+              dateRange="2021 - 2021"
+              course="Analysis and Programming Monitoring"
+              institution="EEEP Leonel de Moura Brizola"
             />
           </div>
-          <div className="flex-col space-y-5 w-full">
+
+          <div className="flex flex-col gap-5 w-full">
             <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max">
               Skills
             </p>
@@ -224,10 +228,11 @@ export default function Home() {
             <Skills text="TYPESCRIPT" icon={TypeScriptLogo} />
           </div>
         </div>
+
       </section>
       <Topic title="Projects" titledecoration="Projects" />
-      <section className="flex items-center justify-center space-x-5">
-        <div className="flex flex-col space-y-5">
+      <section className="flex flex-wrap items-center justify-center gap-5">
+        <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center">
           <ProjectsModal
             coverImage={LogoBlog}
             sourceVideo="https://hospedage.vercel.app/blog.mp4"
@@ -250,7 +255,8 @@ export default function Home() {
             destinateLinkButtonGithub="https://github.com/PedroHenrique1606/planner-web"
           />
         </div>
-        <div className="flex flex-col space-y-5">
+
+        <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center">
           <ProjectsModal
             coverImage={LogoTravelling}
             sourceVideo="https://hospedage.vercel.app/travelling.mp4"
