@@ -66,7 +66,7 @@ const Footer = () => {
             </a>
             <a
               target="_blank"
-              href="https://www.linkedin.com/in/pedro-henrique-melo-da-silva-a7a700231/"
+              href="https://www.linkedin.com/in/pedro-henrique-melo-a7a700231"
             >
               <LinkedinLogo size={28} className="text-white" weight="fill" />
             </a>

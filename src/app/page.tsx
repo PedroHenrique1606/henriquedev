@@ -52,7 +52,7 @@ export default function Home() {
           </a>
           <a
             target="_blank"
-            href="https://www.linkedin.com/in/pedro-henrique-melo-da-silva-a7a700231/"
+            href="https://www.linkedin.com/in/pedro-henrique-melo-a7a700231"
           >
             <LinkedinLogo size={28} className="text-purplePrimary" />
           </a>
@@ -100,7 +100,7 @@ export default function Home() {
         <ArrowDown size={24} className="text-purplePrimary animate-bounce" />
       </div>
       <Topic title="About Me" titleabsolute="About" titledecoration="Me" />
-      <section className="flex flex-col md:flex-row items-center justify-center mx-5 md:mx-20 text-center md:text-left">
+      <section className="flex flex-col md:flex-row items-center justify-center mx-5 md:mx-72 text-center md:text-left">
         <Image
           src={PedroProfileVariant}
           alt="Profile Picture of Pedro Henrique"
