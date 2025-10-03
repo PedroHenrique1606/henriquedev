@@ -20,6 +20,8 @@ import LogoTravelling from "@/assets/travellingcapa.svg";
 import TypeScriptLogo from "@/assets/typescriptlogo.svg";
 import { Button } from "@/components/Button";
 import { Education } from "@/components/Education";
+import { EasterEggConfetti } from "@/components/EasterEggConfetti";
+import { EasterEggModal } from "@/components/EasterEggModal";
 import Footer from "@/components/Footer";
 import { Indicators } from "@/components/Indicators";
 import Navbar from "@/components/Navbar";
@@ -29,6 +31,7 @@ import { Topic } from "@/components/Topic";
 import { Spotlight } from "@/components/ui/spotlight";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useKonamiCode } from "@/hooks/useKonamiCode";
 import {
   ArrowCircleRight,
   ArrowDown,
@@ -41,6 +44,8 @@ import Image from "next/image";
 
 export default function Home() {
   const { t } = useLanguage();
+  const { isActivated, closeEasterEgg } = useKonamiCode();
+  
   return (
     <div>
       <Spotlight
@@ -278,81 +283,90 @@ export default function Home() {
 
         </section>
         <Topic title={t("projects.title")} titledecoration="Projects" />
-        <section className="flex flex-wrap items-center justify-center gap-5">
-          <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center animate-in slide-in-from-bottom duration-700 delay-200">
-            <ProjectsModal
-              coverImage={LogoBlog}
-              sourceVideo="https://hospedage.vercel.app/blog.mp4"
-              titleModalHover={t("projects.blog.title")}
-              descriptionProject={t("projects.blog.description")}
-              titleOfVideo={t("projects.blog.title")}
-              subtitleOfVideo={t("projects.blog.subtitle")}
-              linkCoverVideo="https://hospedage.vercel.app/blog-cover.png"
-              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/blog-petrus"
-              destinateLinkButtonWeb="https://blogpetrus.netlify.app/"
-            />
-            <ProjectsModal
-              coverImage={PlannerWebCapa}
-              sourceVideo="https://hospedandodnv.vercel.app/plannerwebedited.mp4"
-              titleModalHover={t("projects.planner.title")}
-              descriptionProject={t("projects.planner.description")}
-              titleOfVideo={t("projects.planner.title")}
-              subtitleOfVideo={t("projects.planner.subtitle")}
-              linkCoverVideo="https://hospedandodnv.vercel.app/thumb-plannerweb.png"
-              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/planner-web"
-            />
-          </div>
+        <section className="px-4 md:px-8 lg:px-16">
+          {/* Layout padrão: 1 coluna mobile, 2 colunas tablet, 3 colunas desktop */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            
+            {/* Projeto 1: Blog Petrus */}
+            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-200">
+              <ProjectsModal
+                coverImage={LogoBlog}
+                sourceVideo="https://hospedage.vercel.app/blog.mp4"
+                titleModalHover={t("projects.blog.title")}
+                descriptionProject={t("projects.blog.description")}
+                titleOfVideo={t("projects.blog.title")}
+                subtitleOfVideo={t("projects.blog.subtitle")}
+                linkCoverVideo="https://hospedage.vercel.app/blog-cover.png"
+                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/blog-petrus"
+                destinateLinkButtonWeb="https://blogpetrus.netlify.app/"
+              />
+            </div>
 
-          <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center animate-in slide-in-from-bottom duration-700 delay-400">
-            <ProjectsModal
-              coverImage={LogoTravelling}
-              sourceVideo="https://hospedage.vercel.app/travelling.mp4"
-              titleModalHover={t("projects.travelling.title")}
-              descriptionProject={t("projects.travelling.description")}
-              titleOfVideo={t("projects.travelling.title")}
-              subtitleOfVideo={t("projects.travelling.subtitle")}
-              linkCoverVideo="https://hospedage.vercel.app/travelcover.png"
-              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/travelling"
-              destinateLinkButtonWeb="https://travelling-ivory.vercel.app/"
-            />
-            <ProjectsModal
-              coverImage={sacrosanctumLogo}
-              titleModalHover={t("projects.sacrosanctum.title")}
-              descriptionProject={t("projects.sacrosanctum.description")}
-              titleOfVideo={t("projects.sacrosanctum.title")}
-              subtitleOfVideo={t("projects.sacrosanctum.subtitle")}
-              linkCoverVideo={sacrosanctumPage}
-              destinateLinkButtonWeb="https://sacrosanctum.vercel.app/"
-              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/sacrosanctum"
-            />
-          </div>
+            {/* Projeto 2: Planner Web */}
+            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-300">
+              <ProjectsModal
+                coverImage={PlannerWebCapa}
+                sourceVideo="https://hospedandodnv.vercel.app/plannerwebedited.mp4"
+                titleModalHover={t("projects.planner.title")}
+                descriptionProject={t("projects.planner.description")}
+                titleOfVideo={t("projects.planner.title")}
+                subtitleOfVideo={t("projects.planner.subtitle")}
+                linkCoverVideo="https://hospedandodnv.vercel.app/thumb-plannerweb.png"
+                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/planner-web"
+              />
+            </div>
 
-          <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center animate-in slide-in-from-bottom duration-700 delay-600">
-            {/* <ProjectsModal
-              coverImage={LogoSacrosanctum}
-              sourceVideo="https://hospedage.vercel.app/travelling.mp4"
-              titleModalHover="Sacrosanctum"
-              descriptionProject="Daily liturgy site, preparation for confession and aid in the Catholic walk. Developed with Vite+TypeScript, Tailwind and integrations with API via axios."
-              titleOfVideo="Travelling"
-              subtitleOfVideo="Sacrosanctum"
-              linkCoverVideo="https://hospedage.vercel.app/travelcover.png"
-              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/sacrosanctum"
-              destinateLinkButtonWeb="https://https://sacrosanctum.vercel.app/"
-            /> */}
-            <ProjectsModal
-              coverImage={PlannerAppCapa}
-              sourceVideo="https://hospedandodnv.vercel.app/olannerappedited2.mp4"
-              titleModalHover={t("projects.plannerApp.title")}
-              descriptionProject={t("projects.plannerApp.description")}
-              titleOfVideo={t("projects.plannerApp.title")}
-              subtitleOfVideo={t("projects.plannerApp.subtitle")}
-              linkCoverVideo="https://hospedandodnv.vercel.app/plannerapp.png"
-              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/plannerapp"
-            />
+            {/* Projeto 3: Travelling */}
+            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-400">
+              <ProjectsModal
+                coverImage={LogoTravelling}
+                sourceVideo="https://hospedage.vercel.app/travelling.mp4"
+                titleModalHover={t("projects.travelling.title")}
+                descriptionProject={t("projects.travelling.description")}
+                titleOfVideo={t("projects.travelling.title")}
+                subtitleOfVideo={t("projects.travelling.subtitle")}
+                linkCoverVideo="https://hospedage.vercel.app/travelcover.png"
+                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/travelling"
+                destinateLinkButtonWeb="https://travelling-page.vercel.app/"
+              />
+            </div>
+
+            {/* Projeto 4: Sacrosanctum */}
+            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-500">
+              <ProjectsModal
+                coverImage={sacrosanctumLogo}
+                titleModalHover={t("projects.sacrosanctum.title")}
+                descriptionProject={t("projects.sacrosanctum.description")}
+                titleOfVideo={t("projects.sacrosanctum.title")}
+                subtitleOfVideo={t("projects.sacrosanctum.subtitle")}
+                linkCoverVideo={sacrosanctumPage}
+                destinateLinkButtonWeb="https://sacrosanctum.vercel.app/"
+                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/sacrosanctum"
+              />
+            </div>
+
+            {/* Projeto 5: Planner App */}
+            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-600">
+              <ProjectsModal
+                coverImage={PlannerAppCapa}
+                sourceVideo="https://hospedandodnv.vercel.app/olannerappedited2.mp4"
+                titleModalHover={t("projects.plannerApp.title")}
+                descriptionProject={t("projects.plannerApp.description")}
+                titleOfVideo={t("projects.plannerApp.title")}
+                subtitleOfVideo={t("projects.plannerApp.subtitle")}
+                linkCoverVideo="https://hospedandodnv.vercel.app/plannerapp.png"
+                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/plannerapp"
+              />
+            </div>
+
           </div>
         </section>
         <Footer />
       </div>
+      
+      {/* 🎮 EASTER EGG - Konami Code */}
+      <EasterEggConfetti isActive={isActivated} />
+      <EasterEggModal isActive={isActivated} onClose={closeEasterEgg} />
     </div>
   );
 }
