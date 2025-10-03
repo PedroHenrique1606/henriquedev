@@ -213,7 +213,7 @@ export const SnakeGame = ({ onClose }: SnakeGameProps) => {
     if (!checkDirection(e.code)) {
       checkDirection(e.key);
     }
-  }, [gameState.gameStarted, gameState.gameOver, gameState.isPaused, onClose, resetGame, changeDirection]);
+  }, [gameState.gameStarted, gameState.gameOver, onClose, resetGame, changeDirection]);
 
   // useEffect para controles de teclado
   useEffect(() => {
