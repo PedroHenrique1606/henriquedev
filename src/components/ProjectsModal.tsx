@@ -14,7 +14,7 @@ import Image from "next/image";
 interface ProjectsModalProps {
   coverImage: string;
   titleModalHover: string;
-  sourceVideo: string;
+  sourceVideo?: string;  // Tornar 'sourceVideo' opcional
   descriptionProject: string;
   titleOfVideo: string;
   subtitleOfVideo: string;
@@ -62,12 +62,22 @@ export function ProjectsModal({
           </DialogDescription>
         </DialogHeader>
         <div className="w-full">
-          <VideoPlayer
-            posterImage={linkCoverVideo}
-            sourceVideo={sourceVideo}
-            titleOfVideo={titleOfVideo}
-            subtitleOfVideo={subtitleOfVideo}
-          />
+          {sourceVideo ? (
+            <VideoPlayer
+              posterImage={linkCoverVideo}
+              sourceVideo={sourceVideo}
+              titleOfVideo={titleOfVideo}
+              subtitleOfVideo={subtitleOfVideo}
+            />
+          ) : (
+            <Image
+              src={linkCoverVideo}
+              alt="Project video cover"
+              width={384}
+              height={216}
+              className="rounded-lg w-full h-auto"
+            />
+          )}
         </div>
         <DialogFooter className="flex flex-col sm:flex-row gap-2">
           {destinateLinkButtonWeb && (

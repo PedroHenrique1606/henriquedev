@@ -2,9 +2,12 @@
 import Image from "next/image";
 import PedroLogo from "@/assets/logo-petrus.svg";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { LanguageSelector } from "./LanguageSelector";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -24,38 +27,41 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Menu for large screens */}
-        <div className="hidden md:flex space-x-16 font-medium">
-          <a
-            href="/"
-            className="text-white transition-all duration-150 hover:text-indigo-600"
-          >
-            Home
-          </a>
-          <a
-            href="/about"
-            className="text-white transition-all duration-150 hover:text-indigo-600"
-          >
-            About
-          </a>
-          <a
-            href="#"
-            className="text-white transition-all duration-150 hover:text-indigo-600"
-          >
-            Experience
-          </a>
-          <a
-            href="#"
-            className="text-white transition-all duration-150 hover:text-indigo-600"
-          >
-            Projects
-          </a>
-          <a
-            href="https://blogpetrus.netlify.app/"
-            target="_blank"
-            className="text-white transition-all duration-150 hover:text-indigo-600"
-          >
-            Blog
-          </a>
+        <div className="hidden md:flex items-center space-x-8">
+          <div className="flex space-x-8 font-medium">
+            <a
+              href="/"
+              className="text-white transition-all duration-150 hover:text-indigo-600"
+            >
+              {t("nav.home")}
+            </a>
+            <a
+              href="/about"
+              className="text-white transition-all duration-150 hover:text-indigo-600"
+            >
+              {t("nav.about")}
+            </a>
+            <a
+              href="#"
+              className="text-white transition-all duration-150 hover:text-indigo-600"
+            >
+              {t("nav.experience")}
+            </a>
+            <a
+              href="#"
+              className="text-white transition-all duration-150 hover:text-indigo-600"
+            >
+              {t("nav.projects")}
+            </a>
+            <a
+              href="https://blogpetrus.netlify.app/"
+              target="_blank"
+              className="text-white transition-all duration-150 hover:text-indigo-600"
+            >
+              Blog
+            </a>
+          </div>
+          <LanguageSelector />
         </div>
 
         {/* Hamburger icon for mobile */}
@@ -106,28 +112,28 @@ const Navbar: React.FC = () => {
               className="block transition-all duration-150 hover:text-indigo-600"
               onClick={() => setIsMenuOpen(false)} // Close menu when clicked
             >
-              Home
+              {t("nav.home")}
             </a>
             <a
               href="/about"
               className="block transition-all duration-150 hover:text-indigo-600"
               onClick={() => setIsMenuOpen(false)} // Close menu when clicked
             >
-              About
+              {t("nav.about")}
             </a>
             <a
               href="#"
               className="block transition-all duration-150 hover:text-indigo-600"
               onClick={() => setIsMenuOpen(false)} // Close menu when clicked
             >
-              Experience
+              {t("nav.experience")}
             </a>
             <a
               href="#"
               className="block transition-all duration-150 hover:text-indigo-600"
               onClick={() => setIsMenuOpen(false)} // Close menu when clicked
             >
-              Projects
+              {t("nav.projects")}
             </a>
             <a
               href="https://blogpetrus.netlify.app/"
@@ -137,6 +143,9 @@ const Navbar: React.FC = () => {
             >
               Blog
             </a>
+            <div className="pt-4">
+              <LanguageSelector />
+            </div>
           </div>
         </div>
       )}

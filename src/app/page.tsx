@@ -1,3 +1,5 @@
+"use client";
+
 import AngularLogo from "@/assets/angularlogo.svg";
 import LogoBlog from "@/assets/blogcapa.svg";
 import CSSLogo from "@/assets/csslogo.svg";
@@ -7,11 +9,14 @@ import JavaScriptLogo from "@/assets/javascriptlogo.svg";
 import NextJsLogo from "@/assets/nextjslogo.svg";
 import NodeJsLogo from "@/assets/nodejslogo.svg";
 import PedroProfileVariant from "@/assets/pedro-profile-variant.svg";
+import sacrosanctumLogo from "@/assets/sacrosanctumlogo.svg";
 import PedroProfile from "@/assets/pedro-profile.svg";
 import PlannerAppCapa from "@/assets/plannerapp.svg";
 import PlannerWebCapa from "@/assets/plannerwebcapa.svg";
 import ReactLogo from "@/assets/reactjs.svg";
 import ReactNativeLogo from "@/assets/reactnativelogo.svg";
+import LogoSacrosanctum from "@/assets/sacrosanctumlogo.svg";
+import sacrosanctumPage from "@/assets/sacrosanctumImage.svg";
 import TailwindCSSLogo from "@/assets/tailwindcsslogo.svg";
 import LogoTravelling from "@/assets/travellingcapa.svg";
 import TypeScriptLogo from "@/assets/typescriptlogo.svg";
@@ -23,7 +28,9 @@ import Navbar from "@/components/Navbar";
 import { ProjectsModal } from "@/components/ProjectsModal";
 import { Skills } from "@/components/Skills";
 import { Topic } from "@/components/Topic";
-import { HyperText } from "@/components/ui/hyper-text";
+import { Spotlight } from "@/components/ui/spotlight";
+import { TextAnimate } from "@/components/ui/text-animate";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   ArrowCircleRight,
   ArrowDown,
@@ -35,252 +42,319 @@ import {
 import Image from "next/image";
 
 export default function Home() {
+  const { t } = useLanguage();
   return (
-    <div className="space-y-32 md:space-y-60">
-      <div className="flex items-center justify-center">
-        <Navbar />
-      </div>
-      <section className="flex items-center justify-center mx-8">
-        <div className="hidden md:flex flex-col space-y-7 mx-8">
-          <a target="_blank" href="https://github.com/PedroHenrique1606">
-            <GithubLogo size={28} className="text-purplePrimary" />
-          </a>
-          <a
-            target="_blank"
-            href="https://www.instagram.com/pedrohenrique.trc/"
-          >
-            <InstagramLogo size={28} className="text-purplePrimary" />
-          </a>
-          <a
-            target="_blank"
-            href="https://www.linkedin.com/in/pedro-henrique-melo-a7a700231"
-          >
-            <LinkedinLogo size={28} className="text-purplePrimary" />
-          </a>
+    <div>
+      <Spotlight
+        className="-top-40 left-0 md:-top-20 md:left-60"
+        fill="white"
+      />
+      <div className="space-y-32 md:space-y-60">
+        <div className="flex items-center justify-center">
+          <Navbar />
         </div>
-        <div className="space-y-6 md:mr-16 ">
-          <div className="flex md:hidden items-center justify-center relative">
-            <div className="absolute bg-purplePrimary blur-lg rounded-full w-64 h-64 animate-pulse"></div>
+        <section className="flex items-center justify-center mx-8">
+          <div className="hidden md:flex flex-col space-y-7 mx-8">
+            <a target="_blank" href="https://github.com/PedroHenrique1606" className="animate-in slide-in-from-left delay-300 transition-all duration-300 ease-in-out hover:bg-purplePrimary hover:scale-110 hover:rotate-12 p-2 rounded-full group">
+              <GithubLogo size={28} className="text-purplePrimary group-hover:text-white transition-all duration-300 ease-in-out" />
+            </a>
+            <a target="_blank" href="https://www.instagram.com/pedrohenrique.trc/" className="animate-in slide-in-from-left delay-500 transition-all duration-300 ease-in-out hover:bg-purplePrimary hover:scale-110 hover:-rotate-12 p-2 rounded-full group">
+              <InstagramLogo size={28} className="text-purplePrimary group-hover:text-white transition-all duration-300 ease-in-out" />
+            </a>
+            <a target="_blank" href="https://www.linkedin.com/in/pedro-henrique-melo-a7a700231" className="animate-in slide-in-from-left delay-700 transition-all duration-300 ease-in-out hover:bg-purplePrimary hover:scale-110 hover:rotate-12 p-2 rounded-full group">
+              <LinkedinLogo size={28} className="text-purplePrimary group-hover:text-white transition-all duration-300 ease-in-out" />
+            </a>
+          </div>
+          <div className="space-y-6 md:mr-16 ">
+            <div className="flex md:hidden items-center justify-center relative">
+              <div className="absolute bg-purplePrimary blur-lg rounded-full w-64 h-64 animate-pulse"></div>
+              <Image
+                src={PedroProfile}
+                alt="Profile Picture of Pedro Henrique"
+                className="relative w-60 h-60 rounded-full shadow-lg border-4 border-purplePrimary"
+              />
+            </div>
+            <TextAnimate className="font-semibold text-white text-3xl md:text-6xl" animation="blurInUp" by="character" once>
+              {t("hero.greeting")}
+            </TextAnimate>
+            <h3 className="text-slate-400 font-semibold text-sm md:text-lg">
+              {t("hero.role")}
+            </h3>
+            <p className="text-slate-400 leading-6">
+              {t("hero.description.line1")}
+              <br /> {t("hero.description.line2")} <br />
+              {t("hero.description.line3")}
+              <br /> {t("hero.description.line4")}
+            </p>
+            <Button
+              text={t("hero.contact")}
+              destineLink="mailto:pedromelo.dev.contato@gmail.com"
+              icon={ArrowCircleRight}
+            />
+          </div>
+          <div className="hidden md:flex items-center justify-center relative">
+            <div className="absolute bg-purplePrimary blur-lg rounded-full w-full h-full animate-pulse"></div>
             <Image
               src={PedroProfile}
               alt="Profile Picture of Pedro Henrique"
-              className="relative w-60 h-60 rounded-full shadow-lg border-4 border-purplePrimary"
+              className="relative rounded-full shadow-lg border-4 border-purplePrimary"
+              layout="intrinsic"
             />
           </div>
-          <HyperText className="font-semibold text-white text-3xl md:text-6xl">Hi! I&apos;m Pedro Henrique</HyperText>
-          <h3 className="text-slate-400 font-semibold text-sm md:text-lg">
-            Web Developer
-          </h3>
-          <p className="text-slate-400 leading-6">
-            Hi, my name is Pedro Henrique!
-            <br /> I&apos;m able to develop modern, responsive websites, <br />
-            with scalability, clean code and easy maintenance.
-            <br /> I&apos;m looking for new opportunities and I also freelance.
-          </p>
-          <Button
-            text="Contact Me"
-            destineLink="mailto:pedromelo.dev.contato@gmail.com"
-            icon={ArrowCircleRight}
-          />
+        </section>
+        <div className="flex items-center justify-center gap-3">
+          <p className="text-white font-medium">{t("hero.scrollDown")}</p>
+          <ArrowDown size={24} className="text-purplePrimary animate-bounce" />
         </div>
-        <div className="hidden md:flex items-center justify-center relative">
-          <div className="absolute bg-purplePrimary blur-lg rounded-full w-full h-full animate-pulse"></div>
-          <Image
-            src={PedroProfile}
-            alt="Profile Picture of Pedro Henrique"
-            className="relative rounded-full shadow-lg border-4 border-purplePrimary"
-            layout="intrinsic"
-          />
-        </div>
-      </section>
-      <div className="flex items-center justify-center gap-3">
-        <p className="text-white font-medium">Scroll Down</p>
-        <ArrowDown size={24} className="text-purplePrimary animate-bounce" />
+        <Topic title={t("about.title")} titleabsolute="About" titledecoration="Me" />
+        <section className="flex flex-col items-center justify-center mx-4 md:mx-16 lg:mx-32">
+          <div className="max-w-4xl w-full">
+            <div className="animate-in fade-in duration-700">
+              <div className="space-y-5">
+                <div className="animate-in slide-in-from-top duration-500 delay-150">
+                  <h4 className="font-medium text-white text-lg md:text-xl">
+                    {t("about.subtitle")} <span className="text-purplePrimary font-semibold">{t("about.name")}</span>
+                  </h4>
+                  <p className="text-slate-400 text-sm md:text-base mt-1">{t("about.role")}</p>
+                </div>
+
+                <div className="animate-in slide-in-from-bottom duration-500 delay-300 text-slate-300 leading-6 text-sm md:text-base space-y-3">
+                  <p>
+                    {t("about.paragraph1")}
+                  </p>
+
+                  <p>
+                    {t("about.paragraph2")}
+                  </p>
+
+                  <p>
+                    {t("about.paragraph3")}
+                  </p>
+
+                  <p>
+                    {t("about.paragraph4")}
+                  </p>
+                </div>
+
+                <div className="animate-in slide-in-from-bottom duration-500 delay-500 flex flex-wrap justify-center md:justify-start gap-3 pt-2">
+                  <Indicators
+                    numberIndicator="25"
+                    titleIndicator={t("about.certificates")}
+                    conectiveIndicator="and"
+                    predicateIndicator="certifications"
+                  />
+                  <Indicators
+                    numberIndicator="30"
+                    titleIndicator={t("about.projects")}
+                    conectiveIndicator="on"
+                    predicateIndicator="GitHub"
+                  />
+                  <Indicators
+                    numberIndicator="∞"
+                    titleIndicator={t("about.coffee")}
+                    conectiveIndicator="of"
+                    predicateIndicator="coffee"
+                  />
+                </div>
+
+                <div className="animate-in slide-in-from-bottom duration-500 delay-700 flex justify-center md:justify-start pt-2">
+                  <Button
+                    text={t("about.downloadCV")}
+                    destineLink="https://drive.google.com/file/d/1Pq262EN6xO34nEXClkfh9CP0atQylNKi/view?usp=sharing"
+                    icon={ArrowLineDown}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Topic title={t("experience.title")} titledecoration="Experience" />
+        <section className="flex items-center justify-center space-y-8 flex-col mx-3">
+          <div className="space-y-4">
+            <h4 className="font-semibold text-white text-3xl">
+              {t("experience.subtitle")}
+            </h4>
+            <p className="text-white">
+              {t("experience.description.line1")}
+              {t("experience.description.line2")}
+              <br />
+              {t("experience.description.line3")}
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row w-full md:w-2/5 md:items-start items-center md:justify-start justify-center gap-5">
+            <div className="flex flex-col gap-5 w-full">
+              <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max animate-in slide-in-from-left duration-500">
+                {t("experience.education")}
+              </p>
+              <div className="animate-in slide-in-from-left duration-500 delay-100">
+                <Education
+                  dateRange={`2025 - ${t("date.inProgress")}`}
+                  course={t("education.bachelor")}
+                  institution="Estácio"
+                />
+              </div>
+              <div className="animate-in slide-in-from-left duration-500 delay-150">
+                <Education
+                  dateRange={`2023 - 2025`}
+                  course={t("education.developer")}
+                  institution="ArgoTech"
+                />
+              </div>
+              <div className="animate-in slide-in-from-left duration-500 delay-200">
+                <Education
+                  dateRange={`2024 - ${t("date.onHold")}`}
+                  course={t("education.telecom")}
+                  institution="IFCE"
+                />
+              </div>
+              <div className="animate-in slide-in-from-left duration-500 delay-250">
+                <Education
+                  dateRange="2021 - 2023"
+                  course={t("education.network")}
+                  institution="EEEP Leonel de Moura Brizola"
+                />
+              </div>
+              <div className="animate-in slide-in-from-left duration-500 delay-300">
+                <Education
+                  dateRange="2023 - 2023"
+                  course={t("education.networking")}
+                  institution="IBSEC"
+                />
+              </div>
+              <div className="animate-in slide-in-from-left duration-500 delay-350">
+                <Education
+                  dateRange="2022 - 2022"
+                  course={t("education.assembly")}
+                  institution="EEEP Leonel de Moura Brizola"
+                />
+              </div>
+              <div className="animate-in slide-in-from-left duration-500 delay-400">
+                <Education
+                  dateRange="2021 - 2021"
+                  course={t("education.programming")}
+                  institution="EEEP Leonel de Moura Brizola"
+                />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-5 w-full">
+              <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max animate-in slide-in-from-right duration-500">
+                {t("experience.skills")}
+              </p>
+              <div className="animate-in slide-in-from-right duration-500 delay-100">
+                <Skills text="HTML" icon={HTMLLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-150">
+                <Skills text="CSS" icon={CSSLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-200">
+                <Skills text="JAVASCRIPT" icon={JavaScriptLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-250">
+                <Skills text="TAILWIND CSS" icon={TailwindCSSLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-300">
+                <Skills text="REACT JS" icon={ReactLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-350">
+                <Skills text="ANGULAR" icon={AngularLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-400">
+                <Skills text="REACT NATIVE" icon={ReactNativeLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-450">
+                <Skills text="NEXT JS" icon={NextJsLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-500">
+                <Skills text="NODE JS" icon={NodeJsLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-550">
+                <Skills text="FASTIFY" icon={FastifyLogo} />
+              </div>
+              <div className="animate-in slide-in-from-right duration-500 delay-600">
+                <Skills text="TYPESCRIPT" icon={TypeScriptLogo} />
+              </div>
+            </div>
+          </div>
+
+        </section>
+        <Topic title={t("projects.title")} titledecoration="Projects" />
+        <section className="flex flex-wrap items-center justify-center gap-5">
+          <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center animate-in slide-in-from-bottom duration-700 delay-200">
+            <ProjectsModal
+              coverImage={LogoBlog}
+              sourceVideo="https://hospedage.vercel.app/blog.mp4"
+              titleModalHover={t("projects.blog.title")}
+              descriptionProject={t("projects.blog.description")}
+              titleOfVideo={t("projects.blog.title")}
+              subtitleOfVideo={t("projects.blog.subtitle")}
+              linkCoverVideo="https://hospedage.vercel.app/blog-cover.png"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/blog-petrus"
+              destinateLinkButtonWeb="https://blogpetrus.netlify.app/"
+            />
+            <ProjectsModal
+              coverImage={PlannerWebCapa}
+              sourceVideo="https://hospedandodnv.vercel.app/plannerwebedited.mp4"
+              titleModalHover={t("projects.planner.title")}
+              descriptionProject={t("projects.planner.description")}
+              titleOfVideo={t("projects.planner.title")}
+              subtitleOfVideo={t("projects.planner.subtitle")}
+              linkCoverVideo="https://hospedandodnv.vercel.app/thumb-plannerweb.png"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/planner-web"
+            />
+          </div>
+
+          <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center animate-in slide-in-from-bottom duration-700 delay-400">
+            <ProjectsModal
+              coverImage={LogoTravelling}
+              sourceVideo="https://hospedage.vercel.app/travelling.mp4"
+              titleModalHover={t("projects.travelling.title")}
+              descriptionProject={t("projects.travelling.description")}
+              titleOfVideo={t("projects.travelling.title")}
+              subtitleOfVideo={t("projects.travelling.subtitle")}
+              linkCoverVideo="https://hospedage.vercel.app/travelcover.png"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/travelling"
+              destinateLinkButtonWeb="https://travelling-ivory.vercel.app/"
+            />
+            <ProjectsModal
+              coverImage={sacrosanctumLogo}
+              titleModalHover={t("projects.sacrosanctum.title")}
+              descriptionProject={t("projects.sacrosanctum.description")}
+              titleOfVideo={t("projects.sacrosanctum.title")}
+              subtitleOfVideo={t("projects.sacrosanctum.subtitle")}
+              linkCoverVideo={sacrosanctumPage}
+              destinateLinkButtonWeb="https://sacrosanctum.vercel.app/"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/sacrosanctum"
+            />
+          </div>
+
+          <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center animate-in slide-in-from-bottom duration-700 delay-600">
+            {/* <ProjectsModal
+              coverImage={LogoSacrosanctum}
+              sourceVideo="https://hospedage.vercel.app/travelling.mp4"
+              titleModalHover="Sacrosanctum"
+              descriptionProject="Daily liturgy site, preparation for confession and aid in the Catholic walk. Developed with Vite+TypeScript, Tailwind and integrations with API via axios."
+              titleOfVideo="Travelling"
+              subtitleOfVideo="Sacrosanctum"
+              linkCoverVideo="https://hospedage.vercel.app/travelcover.png"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/sacrosanctum"
+              destinateLinkButtonWeb="https://https://sacrosanctum.vercel.app/"
+            /> */}
+            <ProjectsModal
+              coverImage={PlannerAppCapa}
+              sourceVideo="https://hospedandodnv.vercel.app/olannerappedited2.mp4"
+              titleModalHover={t("projects.plannerApp.title")}
+              descriptionProject={t("projects.plannerApp.description")}
+              titleOfVideo={t("projects.plannerApp.title")}
+              subtitleOfVideo={t("projects.plannerApp.subtitle")}
+              linkCoverVideo="https://hospedandodnv.vercel.app/plannerapp.png"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/plannerapp"
+            />
+          </div>
+        </section>
+        <Footer />
       </div>
-      <Topic title="About Me" titleabsolute="About" titledecoration="Me" />
-      <section className="flex flex-col md:flex-row items-center justify-center mx-5 md:mx-72 text-center md:text-left">
-        <Image
-          src={PedroProfileVariant}
-          alt="Profile Picture of Pedro Henrique"
-          className="w-6/12 sm:w-4/12 m-5"
-        />
-        <div className="space-y-6">
-          <h4 className="font-semibold text-white text-2xl md:text-3xl">Know Me</h4>
-          <h4 className="font-medium text-white text-lg md:text-xl flex flex-wrap justify-center md:justify-start gap-2">
-            I&apos;m a <p className="text-purplePrimary">Pedro Henrique</p>
-          </h4>
-          <h3 className="text-slate-400 font-semibold text-base md:text-lg">
-            Web Developer
-          </h3>
-          <p className="text-slate-400 leading-6 text-sm md:text-base">
-            Hello, my name is Pedro Henrique! I&apos;m a computer network technician
-            and self-taught front-end developer living in Brazil. I am able to develop
-            modern, responsive websites with scalability, clean code, and easy
-            maintenance. Since I was a child, I have always had a passion for
-            technology and curiosity in discovering new areas and how everything
-            works, which is how the desire to continue being a web developer awakened
-            in me.
-          </p>
-          <div className="flex flex-wrap justify-center md:justify-start gap-2">
-            <Indicators
-              numberIndicator="25"
-              titleIndicator="Certificates"
-              conectiveIndicator="and"
-              predicateIndicator="certifications"
-            />
-            <Indicators
-              numberIndicator="30"
-              titleIndicator="Projects"
-              conectiveIndicator="on"
-              predicateIndicator="GitHub"
-            />
-            <Indicators
-              numberIndicator="∞"
-              titleIndicator="GitHub"
-              conectiveIndicator="of"
-              predicateIndicator="coffee"
-            />
-          </div>
-          <div className="flex justify-center md:justify-start">
-            <Button
-              text="Download CV"
-              destineLink="https://drive.google.com/file/d/1qRoBqRIEEz_FW9u6b0VHHnk73EAhcHDG/view?usp=sharing"
-              icon={ArrowLineDown}
-            />
-          </div>
-        </div>
-      </section>
-
-      <Topic title="Experience" titledecoration="Experience" />
-      <section className="flex items-center justify-center space-y-8 flex-col mx-3">
-        <div className="space-y-4">
-          <h4 className="font-semibold text-white text-3xl">
-            Experience &amp; Skills
-          </h4>
-          <p className="text-white">
-            I&apos;m looking for new opportunities and challenges in the area of
-            front-end development.
-            <br />
-            Check out some of my skills below.
-          </p>
-        </div>
-        <div className="flex flex-col md:flex-row w-full md:w-2/5 md:items-start items-center md:justify-start justify-center gap-5">
-          <div className="flex flex-col gap-5 w-full">
-            <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max">
-              Education
-            </p>
-            <Education
-              dateRange="2025 - In Progress"
-              course="Bachelor's Degree in Software Engineering"
-              institution="Estácio"
-            />
-            <Education
-              dateRange="2024 - At the moment"
-              course="Web Developer"
-              institution="ArgoTech"
-            />
-            <Education
-              dateRange="2024 - On hold"
-              course="Telecommunication Engineering"
-              institution="IFCE"
-            />
-            <Education
-              dateRange="2021 - 2023"
-              course="Computer Network"
-              institution="EEEP Leonel de Moura Brizola"
-            />
-            <Education
-              dateRange="2023 - 2023"
-              course="Certification in Computer Networking Fundamentals"
-              institution="IBSEC"
-            />
-            <Education
-              dateRange="2023 - 2023"
-              course="Front End Intern"
-              institution="ArgoTech"
-            />
-            <Education
-              dateRange="2022 - 2022"
-              course="Monitoring of Assembly and Installation of Systems"
-              institution="EEEP Leonel de Moura Brizola"
-            />
-            <Education
-              dateRange="2021 - 2021"
-              course="Analysis and Programming Monitoring"
-              institution="EEEP Leonel de Moura Brizola"
-            />
-          </div>
-
-          <div className="flex flex-col gap-5 w-full">
-            <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max">
-              Skills
-            </p>
-            <Skills text="HTML" icon={HTMLLogo} />
-            <Skills text="CSS" icon={CSSLogo} />
-            <Skills text="JAVASCRIPT" icon={JavaScriptLogo} />
-            <Skills text="TAILWIND CSS" icon={TailwindCSSLogo} />
-            <Skills text="REACT JS" icon={ReactLogo} />
-            <Skills text="ANGULAR" icon={AngularLogo} />
-            <Skills text="REACT NATIVE" icon={ReactNativeLogo} />
-            <Skills text="NEXT JS" icon={NextJsLogo} />
-            <Skills text="NODE JS" icon={NodeJsLogo} />
-            <Skills text="FASTIFY" icon={FastifyLogo} />
-            <Skills text="TYPESCRIPT" icon={TypeScriptLogo} />
-          </div>
-        </div>
-
-      </section>
-      <Topic title="Projects" titledecoration="Projects" />
-      <section className="flex flex-wrap items-center justify-center gap-5">
-        <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center">
-          <ProjectsModal
-            coverImage={LogoBlog}
-            sourceVideo="https://hospedage.vercel.app/blog.mp4"
-            titleModalHover="Blog Petrus"
-            descriptionProject="Blog make with Astro"
-            titleOfVideo="Blog Petrus"
-            subtitleOfVideo="Your developer Blog"
-            linkCoverVideo="https://hospedage.vercel.app/blog-cover.png"
-            destinateLinkButtonGithub="https://github.com/PedroHenrique1606/blog-petrus"
-            destinateLinkButtonWeb="https://blogpetrus.netlify.app/"
-          />
-          <ProjectsModal
-            coverImage={PlannerWebCapa}
-            sourceVideo="https://hospedandodnv.vercel.app/plannerwebedited.mp4"
-            titleModalHover="Planner Web"
-            descriptionProject="Your app to plan trips with friends"
-            titleOfVideo="Planner Web"
-            subtitleOfVideo="Your app for planning trips"
-            linkCoverVideo="https://hospedandodnv.vercel.app/thumb-plannerweb.png"
-            destinateLinkButtonGithub="https://github.com/PedroHenrique1606/planner-web"
-          />
-        </div>
-
-        <div className="flex flex-col gap-5 w-full md:w-auto mx-2 items-center">
-          <ProjectsModal
-            coverImage={LogoTravelling}
-            sourceVideo="https://hospedage.vercel.app/travelling.mp4"
-            titleModalHover="Travelling"
-            descriptionProject="Landing Page from travel enterprise with NextJS, TypeScript, Tailwind and StoryBook"
-            titleOfVideo="Travelling"
-            subtitleOfVideo="Travelling landing page"
-            linkCoverVideo="https://hospedage.vercel.app/travelcover.png"
-            destinateLinkButtonGithub="https://github.com/PedroHenrique1606/travelling"
-            destinateLinkButtonWeb="https://travelling-ivory.vercel.app/"
-          />
-          <ProjectsModal
-            coverImage={PlannerAppCapa}
-            sourceVideo="https://hospedandodnv.vercel.app/olannerappedited2.mp4"
-            titleModalHover="Planner App"
-            descriptionProject="Your app to plan trips with friends"
-            titleOfVideo="Planner App"
-            subtitleOfVideo="Your App trip"
-            linkCoverVideo="https://hospedandodnv.vercel.app/plannerapp.png"
-            destinateLinkButtonGithub="https://github.com/PedroHenrique1606/plannerapp"
-          />
-        </div>
-      </section>
-      <Footer />
     </div>
   );
 }
