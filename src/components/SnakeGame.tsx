@@ -172,9 +172,6 @@ export const SnakeGame = ({ onClose }: SnakeGameProps) => {
   // Controles do teclado otimizados
   const handleKeyPress = useCallback((e: KeyboardEvent) => {
     e.preventDefault();
-    
-    // Debug temporário (remover depois)
-    console.log('Key pressed:', { key: e.key, code: e.code });
 
     if (e.key === 'Escape') {
       onClose();

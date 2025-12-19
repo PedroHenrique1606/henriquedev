@@ -18,20 +18,26 @@ import sacrosanctumPage from "@/assets/sacrosanctumImage.svg";
 import TailwindCSSLogo from "@/assets/tailwindcsslogo.svg";
 import LogoTravelling from "@/assets/travellingcapa.svg";
 import TypeScriptLogo from "@/assets/typescriptlogo.svg";
+import PedroLogo from "@/assets/logo-petrus.svg";
 import { Button } from "@/components/Button";
 import { Education } from "@/components/Education";
+import { Experience } from "@/components/Experience";
+import ProfileCard from "@/components/ProfileCard";
 import { EasterEggConfetti } from "@/components/EasterEggConfetti";
 import { EasterEggModal } from "@/components/EasterEggModal";
 import Footer from "@/components/Footer";
-import { Indicators } from "@/components/Indicators";
 import Navbar from "@/components/Navbar";
-import { ProjectsModal } from "@/components/ProjectsModal";
-import { Skills } from "@/components/Skills";
+import { ProjectCard } from "@/components/ProjectCard";
 import { Topic } from "@/components/Topic";
-import { Spotlight } from "@/components/ui/spotlight";
+import { LogoLoop } from "@/components/LogoLoop";
+import AnimatedContent from "@/components/AnimatedContent";
+import GradientText from "@/components/GradientText";
+import GlareHover from "@/components/GlareHover";
+import CountUp from "@/components/CountUp";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useKonamiCode } from "@/hooks/useKonamiCode";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import {
   ArrowCircleRight,
   ArrowDown,
@@ -45,36 +51,70 @@ import Image from "next/image";
 export default function Home() {
   const { t } = useLanguage();
   const { isActivated, closeEasterEgg } = useKonamiCode();
+  useSmoothScroll();
   
   return (
-    <div>
-      <Spotlight
-        className="-top-40 left-0 md:-top-20 md:left-60"
-        fill="white"
-      />
-      <div className="space-y-32 md:space-y-60">
-        <div className="flex items-center justify-center">
+    <div className="overflow-x-hidden" data-scroll-container>
+      <a 
+        href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-purplePrimary focus:text-white focus:rounded-md focus:outline-none focus:ring-2 focus:ring-white"
+      >
+        Pular para o conteúdo principal
+      </a>
+      <div className="space-y-16 md:space-y-40">
+        <div id="home" className="flex items-center justify-center">
           <Navbar />
         </div>
-        <section className="flex items-center justify-center mx-8">
+        <main id="main-content">
+        <section className="flex items-center justify-center mx-8 pt-0 pb-12 md:pb-0">
           <div className="hidden md:flex flex-col space-y-7 mx-8">
-            <a target="_blank" href="https://github.com/PedroHenrique1606" className="animate-in slide-in-from-left delay-300 transition-all duration-300 ease-in-out hover:bg-purplePrimary hover:scale-110 hover:rotate-12 p-2 rounded-full group">
-              <GithubLogo size={28} className="text-purplePrimary group-hover:text-white transition-all duration-300 ease-in-out" />
+            <a 
+              target="_blank" 
+              href="https://github.com/PedroHenrique1606" 
+              rel="noopener noreferrer"
+              aria-label="Visitar perfil no GitHub"
+              className="animate-in slide-in-from-left delay-300 transition-all duration-300 ease-in-out hover:bg-purplePrimary hover:scale-110 hover:rotate-12 p-2 rounded-full group"
+            >
+              <GithubLogo size={28} className="text-purplePrimary group-hover:text-white transition-all duration-300 ease-in-out" aria-hidden="true" />
             </a>
-            <a target="_blank" href="https://www.instagram.com/pedrohenrique.trc/" className="animate-in slide-in-from-left delay-500 transition-all duration-300 ease-in-out hover:bg-purplePrimary hover:scale-110 hover:-rotate-12 p-2 rounded-full group">
-              <InstagramLogo size={28} className="text-purplePrimary group-hover:text-white transition-all duration-300 ease-in-out" />
+            <a 
+              target="_blank" 
+              href="https://www.instagram.com/pedrohenrique.trc/" 
+              rel="noopener noreferrer"
+              aria-label="Visitar perfil no Instagram"
+              className="animate-in slide-in-from-left delay-500 transition-all duration-300 ease-in-out hover:bg-purplePrimary hover:scale-110 hover:-rotate-12 p-2 rounded-full group"
+            >
+              <InstagramLogo size={28} className="text-purplePrimary group-hover:text-white transition-all duration-300 ease-in-out" aria-hidden="true" />
             </a>
-            <a target="_blank" href="https://www.linkedin.com/in/pedro-henrique-melo-a7a700231" className="animate-in slide-in-from-left delay-700 transition-all duration-300 ease-in-out hover:bg-purplePrimary hover:scale-110 hover:rotate-12 p-2 rounded-full group">
-              <LinkedinLogo size={28} className="text-purplePrimary group-hover:text-white transition-all duration-300 ease-in-out" />
+            <a 
+              target="_blank" 
+              href="https://www.linkedin.com/in/pedro-henrique-melo-a7a700231" 
+              rel="noopener noreferrer"
+              aria-label="Visitar perfil no LinkedIn"
+              className="animate-in slide-in-from-left delay-700 transition-all duration-300 ease-in-out hover:bg-purplePrimary hover:scale-110 hover:rotate-12 p-2 rounded-full group"
+            >
+              <LinkedinLogo size={28} className="text-purplePrimary group-hover:text-white transition-all duration-300 ease-in-out" aria-hidden="true" />
             </a>
           </div>
-          <div className="space-y-6 md:mr-16 ">
-            <div className="flex md:hidden items-center justify-center relative">
-              <div className="absolute bg-purplePrimary blur-lg rounded-full w-64 h-64 animate-pulse"></div>
-              <Image
-                src={PedroProfile}
-                alt="Profile Picture of Pedro Henrique"
-                className="relative w-60 h-60 rounded-full shadow-lg border-4 border-purplePrimary"
+          <div className="space-y-6 md:space-y-6 md:mr-16">
+            <div className="flex md:hidden items-center justify-center relative mb-4">
+              <ProfileCard
+                avatarUrl={PedroProfile.src}
+                iconUrl={PedroLogo.src}
+                innerGradient="linear-gradient(145deg, rgba(97, 79, 208, 0.3) 0%, rgba(97, 79, 208, 0.1) 100%)"
+                behindGlowEnabled={true}
+                behindGlowColor="#614FD0"
+                behindGlowSize="120%"
+                enableTilt={true}
+                enableMobileTilt={true}
+                showUserInfo={true}
+                name="Pedro Henrique"
+                title={t("hero.role")}
+                handle="pedrohenrique1606"
+                status="Available"
+                contactText={t("hero.contact")}
+                onContactClick={() => window.location.href = "mailto:pedromelo.dev.contato@gmail.com"}
+                className="w-auto scale-75"
               />
             </div>
             <TextAnimate className="font-semibold text-white text-3xl md:text-6xl" animation="blurInUp" by="character" once>
@@ -83,7 +123,7 @@ export default function Home() {
             <h3 className="text-slate-400 font-semibold text-sm md:text-lg">
               {t("hero.role")}
             </h3>
-            <p className="text-slate-400 leading-6">
+            <p className="text-slate-400 leading-6 text-sm md:text-base">
               {t("hero.description.line1")}
               <br /> {t("hero.description.line2")} <br />
               {t("hero.description.line3")}
@@ -96,271 +136,469 @@ export default function Home() {
             />
           </div>
           <div className="hidden md:flex items-center justify-center relative">
-            <div className="absolute bg-purplePrimary blur-lg rounded-full w-full h-full animate-pulse"></div>
-            <Image
-              src={PedroProfile}
-              alt="Profile Picture of Pedro Henrique"
-              className="relative rounded-full shadow-lg border-4 border-purplePrimary"
-              layout="intrinsic"
+            <ProfileCard
+              avatarUrl={PedroProfile.src}
+              iconUrl={PedroLogo.src}
+              innerGradient="linear-gradient(145deg, rgba(97, 79, 208, 0.3) 0%, rgba(97, 79, 208, 0.1) 100%)"
+              behindGlowEnabled={true}
+              behindGlowColor="#614FD0"
+              behindGlowSize="120%"
+              enableTilt={true}
+              enableMobileTilt={true}
+              showUserInfo={true}
+              name="Pedro Henrique"
+              title={t("hero.role")}
+              handle="pedrohenrique"
+              status="Available"
+              contactText={t("hero.contact")}
+              onContactClick={() => window.location.href = "mailto:pedromelo.dev.contato@gmail.com"}
+              className="w-auto"
             />
           </div>
         </section>
-        <div className="flex items-center justify-center gap-3">
+        <div className="flex items-center justify-center gap-3 py-12 md:py-8" aria-label="Indicador de scroll">
           <p className="text-white font-medium">{t("hero.scrollDown")}</p>
-          <ArrowDown size={24} className="text-purplePrimary animate-bounce" />
+          <ArrowDown size={24} className="text-purplePrimary animate-bounce" aria-hidden="true" />
         </div>
-        <Topic title={t("about.title")} titleabsolute="About" titledecoration="Me" />
-        <section className="flex flex-col items-center justify-center mx-4 md:mx-16 lg:mx-32">
-          <div className="max-w-4xl w-full">
-            <div className="animate-in fade-in duration-700">
-              <div className="space-y-5">
-                <div className="animate-in slide-in-from-top duration-500 delay-150">
-                  <h4 className="font-medium text-white text-lg md:text-xl">
-                    {t("about.subtitle")} <span className="text-purplePrimary font-semibold">{t("about.name")}</span>
-                  </h4>
-                  <p className="text-slate-400 text-sm md:text-base mt-1">{t("about.role")}</p>
-                </div>
+        <div className="mb-16 md:mb-8">
+          <Topic title={t("about.title")} titleabsolute="About" titledecoration="Me" />
+        </div>
+        <section id="about" className="flex flex-col items-center justify-center mx-4 md:mx-16 lg:mx-32 py-12 md:py-12" data-scroll data-scroll-speed="0.5">
+          <div className="max-w-5xl w-full relative">
+            <div className="space-y-8 md:space-y-12">
+              <AnimatedContent
+                direction="vertical"
+                reverse={false}
+                distance={40}
+                duration={0.8}
+                delay={0}
+                container="[data-scroll-container]"
+                className="text-center md:text-left"
+              >
+                <GradientText
+                  colors={['#ffffff', '#614FD0', '#ffffff']}
+                  animationSpeed={6}
+                  className="text-4xl md:text-6xl font-bold mb-4"
+                >
+                  {t("about.subtitle")} <span className="text-purplePrimary">{t("about.name")}</span>
+                </GradientText>
+                <p className="text-slate-400 text-base md:text-lg mt-2 font-medium">
+                  {t("about.role")}
+                </p>
+              </AnimatedContent>
 
-                <div className="animate-in slide-in-from-bottom duration-500 delay-300 text-slate-300 leading-6 text-sm md:text-base space-y-3">
-                  <p>
+              <div className="relative">
+                <AnimatedContent
+                  direction="vertical"
+                  reverse={false}
+                  distance={30}
+                  duration={0.7}
+                  delay={0.2}
+                  container="[data-scroll-container]"
+                  className="space-y-4 text-slate-300 leading-relaxed text-base md:text-lg"
+                >
+                  <p className="opacity-90">
                     {t("about.paragraph1")}
                   </p>
-
-                  <p>
+                  <p className="opacity-90">
                     {t("about.paragraph2")}
                   </p>
-
-                  <p>
+                  <p className="opacity-90">
                     {t("about.paragraph3")}
                   </p>
-
-                  <p>
+                  <p className="opacity-90">
                     {t("about.paragraph4")}
                   </p>
-                </div>
-
-                <div className="animate-in slide-in-from-bottom duration-500 delay-500 flex flex-wrap justify-center md:justify-start gap-3 pt-2">
-                  <Indicators
-                    numberIndicator="25"
-                    titleIndicator={t("about.certificates")}
-                    conectiveIndicator="and"
-                    predicateIndicator="certifications"
-                  />
-                  <Indicators
-                    numberIndicator="30"
-                    titleIndicator={t("about.projects")}
-                    conectiveIndicator="on"
-                    predicateIndicator="GitHub"
-                  />
-                  <Indicators
-                    numberIndicator="∞"
-                    titleIndicator={t("about.coffee")}
-                    conectiveIndicator="of"
-                    predicateIndicator="coffee"
-                  />
-                </div>
-
-                <div className="animate-in slide-in-from-bottom duration-500 delay-700 flex justify-center md:justify-start pt-2">
-                  <Button
-                    text={t("about.downloadCV")}
-                    destineLink="https://drive.google.com/file/d/1Pq262EN6xO34nEXClkfh9CP0atQylNKi/view?usp=sharing"
-                    icon={ArrowLineDown}
-                  />
-                </div>
+                </AnimatedContent>
               </div>
+
+              <AnimatedContent
+                direction="horizontal"
+                reverse={false}
+                distance={50}
+                duration={0.8}
+                delay={0.4}
+                container="[data-scroll-container]"
+                className="flex flex-wrap justify-center md:justify-start gap-4 md:gap-6 pt-6"
+              >
+                <GlareHover
+                  width="220px"
+                  height="160px"
+                  background="transparent"
+                  borderRadius="16px"
+                  borderColor="#614FD0"
+                  glareColor="#614FD0"
+                  glareOpacity={0.2}
+                  transitionDuration={400}
+                >
+                  <div className="bg-gradient-to-br from-customBlueSecondary/90 to-customBlueSecondary/70 p-6 rounded-2xl backdrop-blur-sm hover:from-purplePrimary/20 hover:to-customBlueSecondary transition-all duration-300 w-full h-full flex flex-col items-center justify-center text-center space-y-2">
+                    <div className="text-4xl md:text-5xl font-bold text-purplePrimary">
+                      <CountUp to={25} duration={2} delay={0.2} className="inline" />
+                      <span className="text-purplePrimary">+</span>
+                    </div>
+                    <div className="space-y-0.5">
+                      <p className="text-white font-semibold text-sm md:text-base">{t("about.certificates")}</p>
+                      <p className="text-slate-400 text-xs md:text-sm">and certifications</p>
+                    </div>
+                  </div>
+                </GlareHover>
+                
+                <GlareHover
+                  width="220px"
+                  height="160px"
+                  background="transparent"
+                  borderRadius="16px"
+                  borderColor="#614FD0"
+                  glareColor="#614FD0"
+                  glareOpacity={0.2}
+                  transitionDuration={400}
+                >
+                  <div className="bg-gradient-to-br from-customBlueSecondary/90 to-customBlueSecondary/70 p-6 rounded-2xl backdrop-blur-sm hover:from-purplePrimary/20 hover:to-customBlueSecondary transition-all duration-300 w-full h-full flex flex-col items-center justify-center text-center space-y-2">
+                    <div className="text-4xl md:text-5xl font-bold text-purplePrimary">
+                      <CountUp to={30} duration={2} delay={0.4} className="inline" />
+                      <span className="text-purplePrimary">+</span>
+                    </div>
+                    <div className="space-y-0.5">
+                      <p className="text-white font-semibold text-sm md:text-base">{t("about.projects")}</p>
+                      <p className="text-slate-400 text-xs md:text-sm">on GitHub</p>
+                    </div>
+                  </div>
+                </GlareHover>
+                
+                <GlareHover
+                  width="220px"
+                  height="160px"
+                  background="transparent"
+                  borderRadius="16px"
+                  borderColor="#614FD0"
+                  glareColor="#614FD0"
+                  glareOpacity={0.2}
+                  transitionDuration={400}
+                >
+                  <div className="bg-gradient-to-br from-customBlueSecondary/90 to-customBlueSecondary/70 p-6 rounded-2xl backdrop-blur-sm hover:from-purplePrimary/20 hover:to-customBlueSecondary transition-all duration-300 w-full h-full flex flex-col items-center justify-center text-center space-y-2">
+                    <div className="text-4xl md:text-5xl font-bold text-purplePrimary">
+                      <span className="text-purplePrimary">∞</span>
+                      <span className="text-purplePrimary">+</span>
+                    </div>
+                    <div className="space-y-0.5">
+                      <p className="text-white font-semibold text-sm md:text-base">Coffee</p>
+                      <p className="text-slate-400 text-xs md:text-sm">of coffee</p>
+                    </div>
+                  </div>
+                </GlareHover>
+              </AnimatedContent>
+
+              <AnimatedContent
+                direction="vertical"
+                reverse={false}
+                distance={30}
+                duration={0.7}
+                delay={0.6}
+                container="[data-scroll-container]"
+                className="flex justify-center md:justify-start pt-4"
+              >
+                <Button
+                  text={t("about.downloadCV")}
+                  destineLink="https://drive.google.com/file/d/1Pq262EN6xO34nEXClkfh9CP0atQylNKi/view?usp=sharing"
+                  icon={ArrowLineDown}
+                />
+              </AnimatedContent>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full py-8 px-4 md:px-16 lg:px-32 overflow-x-hidden" data-scroll data-scroll-speed="0.5">
+          <div className="w-full animate-in fade-in duration-700 delay-300 overflow-x-hidden">
+            <div className="w-full overflow-x-hidden">
+              <LogoLoop
+                logos={[
+                  { node: <Image src={HTMLLogo} alt="HTML" width={20} height={20} loading="lazy" />, title: "HTML", ariaLabel: "HTML" },
+                  { node: <Image src={CSSLogo} alt="CSS" width={20} height={20} loading="lazy" />, title: "CSS", ariaLabel: "CSS" },
+                  { node: <Image src={JavaScriptLogo} alt="JavaScript" width={20} height={20} loading="lazy" />, title: "JavaScript", ariaLabel: "JavaScript" },
+                  { node: <Image src={TailwindCSSLogo} alt="Tailwind CSS" width={20} height={20} loading="lazy" />, title: "Tailwind CSS", ariaLabel: "Tailwind CSS" },
+                  { node: <Image src={ReactLogo} alt="React JS" width={20} height={20} loading="lazy" />, title: "React", ariaLabel: "React" },
+                  { node: <Image src={AngularLogo} alt="Angular" width={20} height={20} loading="lazy" />, title: "Angular", ariaLabel: "Angular" },
+                  { node: <Image src={ReactNativeLogo} alt="React Native" width={20} height={20} loading="lazy" />, title: "React Native", ariaLabel: "React Native" },
+                  { node: <Image src={NextJsLogo} alt="Next JS" width={20} height={20} loading="lazy" />, title: "Next.js", ariaLabel: "Next.js" },
+                  { node: <Image src={NodeJsLogo} alt="Node JS" width={20} height={20} loading="lazy" />, title: "Node.js", ariaLabel: "Node.js" },
+                  { node: <Image src={FastifyLogo} alt="Fastify" width={20} height={20} loading="lazy" />, title: "Fastify", ariaLabel: "Fastify" },
+                  { node: <Image src={TypeScriptLogo} alt="TypeScript" width={20} height={20} loading="lazy" />, title: "TypeScript", ariaLabel: "TypeScript" },
+                ]}
+                speed={50}
+                direction="left"
+                logoHeight={40}
+                gap={16}
+                pauseOnHover={true}
+                fadeOut={true}
+                fadeOutColor="#0E1B31"
+                scaleOnHover={true}
+                className="py-4"
+                width="100%"
+                ariaLabel="Technologies"
+                renderItem={(item) => {
+                  interface TechItem {
+                    title?: string;
+                    node?: React.ReactNode;
+                  }
+                  
+                  const techData: Record<string, { logo: typeof HTMLLogo; name: string }> = {
+                    HTML: { logo: HTMLLogo, name: "HTML" },
+                    CSS: { logo: CSSLogo, name: "CSS" },
+                    JavaScript: { logo: JavaScriptLogo, name: "JavaScript" },
+                    "Tailwind CSS": { logo: TailwindCSSLogo, name: "Tailwind CSS" },
+                    React: { logo: ReactLogo, name: "React" },
+                    Angular: { logo: AngularLogo, name: "Angular" },
+                    "React Native": { logo: ReactNativeLogo, name: "React Native" },
+                    "Next.js": { logo: NextJsLogo, name: "Next.js" },
+                    "Node.js": { logo: NodeJsLogo, name: "Node.js" },
+                    Fastify: { logo: FastifyLogo, name: "Fastify" },
+                    TypeScript: { logo: TypeScriptLogo, name: "TypeScript" },
+                  };
+                  
+                  const title = (item as TechItem).title || "";
+                  const tech = techData[title] || { logo: HTMLLogo, name: title };
+                  
+                  return (
+                    <div className="flex items-center gap-2 bg-customBlueSecondary/80 hover:bg-customBlueSecondary px-4 py-2.5 rounded-full border border-purplePrimary/20 hover:border-purplePrimary/50 transition-all duration-300 group">
+                      <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-purplePrimary/20 transition-colors duration-300">
+                        <Image src={tech.logo} alt={tech.name} width={20} height={20} className="object-contain" />
+                      </div>
+                      <span className="text-white text-sm font-medium whitespace-nowrap">{tech.name}</span>
+                    </div>
+                  );
+                }}
+              />
             </div>
           </div>
         </section>
 
         <Topic title={t("experience.title")} titledecoration="Experience" />
-        <section className="flex items-center justify-center space-y-8 flex-col mx-3">
-          <div className="space-y-4">
-            <h4 className="font-semibold text-white text-3xl">
+        <section id="experience" className="flex items-center justify-center space-y-12 flex-col mx-4 md:mx-8 lg:mx-16 py-12">
+          <AnimatedContent
+            direction="vertical"
+            reverse={true}
+            distance={30}
+            duration={0.8}
+            delay={0}
+            className="space-y-4 text-center max-w-3xl"
+          >
+            <h4 className="font-bold text-white text-4xl md:text-5xl bg-gradient-to-r from-white to-purplePrimary bg-clip-text text-transparent">
               {t("experience.subtitle")}
             </h4>
-            <p className="text-white">
+            <p className="text-slate-300 text-lg leading-relaxed">
               {t("experience.description.line1")}
               {t("experience.description.line2")}
               <br />
               {t("experience.description.line3")}
             </p>
-          </div>
-          <div className="flex flex-col md:flex-row w-full md:w-2/5 md:items-start items-center md:justify-start justify-center gap-5">
-            <div className="flex flex-col gap-5 w-full">
-              <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max animate-in slide-in-from-left duration-500">
-                {t("experience.education")}
-              </p>
-              <div className="animate-in slide-in-from-left duration-500 delay-100">
-                <Education
-                  dateRange={`2025 - ${t("date.inProgress")}`}
-                  course={t("education.bachelor")}
-                  institution="Estácio"
-                />
-              </div>
-              <div className="animate-in slide-in-from-left duration-500 delay-150">
-                <Education
-                  dateRange={`2023 - 2025`}
-                  course={t("education.developer")}
-                  institution="ArgoTech"
-                />
-              </div>
-              <div className="animate-in slide-in-from-left duration-500 delay-200">
-                <Education
-                  dateRange={`2024 - ${t("date.onHold")}`}
-                  course={t("education.telecom")}
-                  institution="IFCE"
-                />
-              </div>
-              <div className="animate-in slide-in-from-left duration-500 delay-250">
-                <Education
-                  dateRange="2021 - 2023"
-                  course={t("education.network")}
-                  institution="EEEP Leonel de Moura Brizola"
-                />
-              </div>
-              <div className="animate-in slide-in-from-left duration-500 delay-300">
-                <Education
-                  dateRange="2023 - 2023"
-                  course={t("education.networking")}
-                  institution="IBSEC"
-                />
-              </div>
-              <div className="animate-in slide-in-from-left duration-500 delay-350">
-                <Education
-                  dateRange="2022 - 2022"
-                  course={t("education.assembly")}
-                  institution="EEEP Leonel de Moura Brizola"
-                />
-              </div>
-              <div className="animate-in slide-in-from-left duration-500 delay-400">
-                <Education
-                  dateRange="2021 - 2021"
-                  course={t("education.programming")}
-                  institution="EEEP Leonel de Moura Brizola"
-                />
+          </AnimatedContent>
+          
+          <div className="w-full max-w-4xl space-y-12">
+            {/* Experiência Profissional */}
+            <div>
+              <AnimatedContent
+                direction="horizontal"
+                reverse={true}
+                distance={30}
+                duration={0.6}
+                delay={0.2}
+                className="mb-8"
+              >
+                <div className="inline-block">
+                  <span className="text-purplePrimary text-sm font-bold uppercase tracking-widest px-4 py-2 bg-purplePrimary/10 rounded-full border border-purplePrimary/30">
+                    {t("experience.professional")}
+                  </span>
+                </div>
+              </AnimatedContent>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6" data-scroll data-scroll-speed="0.5">
+                <div data-scroll data-scroll-speed="0.3">
+                  <AnimatedContent
+                    direction="vertical"
+                    reverse={false}
+                    distance={40}
+                    duration={0.7}
+                    delay={0.3}
+                  >
+                    <Experience
+                      dateRange={`2025 - ${t("date.currently")}`}
+                      role={t("experience.mobileDeveloper")}
+                      company="SGBR SISTEMAS"
+                    />
+                  </AnimatedContent>
+                </div>
+                
+                <div data-scroll data-scroll-speed="0.3">
+                  <AnimatedContent
+                    direction="vertical"
+                    reverse={false}
+                    distance={40}
+                    duration={0.7}
+                    delay={0.4}
+                  >
+                    <Experience
+                      dateRange={`2023 - 2025`}
+                      role={`${t("education.developer")} - ${t("experience.senior")}`}
+                      company="ArgoTech"
+                    />
+                  </AnimatedContent>
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-5 w-full">
-              <p className="text-white font-semibold py-2 px-3 bg-purplePrimary rounded-md min-w-max animate-in slide-in-from-right duration-500">
-                {t("experience.skills")}
-              </p>
-              <div className="animate-in slide-in-from-right duration-500 delay-100">
-                <Skills text="HTML" icon={HTMLLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-150">
-                <Skills text="CSS" icon={CSSLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-200">
-                <Skills text="JAVASCRIPT" icon={JavaScriptLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-250">
-                <Skills text="TAILWIND CSS" icon={TailwindCSSLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-300">
-                <Skills text="REACT JS" icon={ReactLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-350">
-                <Skills text="ANGULAR" icon={AngularLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-400">
-                <Skills text="REACT NATIVE" icon={ReactNativeLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-450">
-                <Skills text="NEXT JS" icon={NextJsLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-500">
-                <Skills text="NODE JS" icon={NodeJsLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-550">
-                <Skills text="FASTIFY" icon={FastifyLogo} />
-              </div>
-              <div className="animate-in slide-in-from-right duration-500 delay-600">
-                <Skills text="TYPESCRIPT" icon={TypeScriptLogo} />
+            {/* Educação */}
+            <div>
+              <AnimatedContent
+                direction="horizontal"
+                reverse={true}
+                distance={30}
+                duration={0.6}
+                delay={0.5}
+                className="mb-8"
+              >
+                <div className="inline-block">
+                  <span className="text-purplePrimary text-sm font-bold uppercase tracking-widest px-4 py-2 bg-purplePrimary/10 rounded-full border border-purplePrimary/30">
+                    {t("experience.education")}
+                  </span>
+                </div>
+              </AnimatedContent>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <AnimatedContent
+                  direction="vertical"
+                  reverse={false}
+                  distance={40}
+                  duration={0.7}
+                  delay={0.6}
+                >
+                  <Education
+                    dateRange={`2025 - ${t("date.inProgress")}`}
+                    course={t("education.bachelor")}
+                    institution="Estácio"
+                  />
+                </AnimatedContent>
+                
+                <AnimatedContent
+                  direction="vertical"
+                  reverse={false}
+                  distance={40}
+                  duration={0.7}
+                  delay={0.7}
+                >
+                  <Education
+                    dateRange={`2024 - ${t("date.onHold")}`}
+                    course={t("education.telecom")}
+                    institution="IFCE"
+                  />
+                </AnimatedContent>
+                
+                <AnimatedContent
+                  direction="vertical"
+                  reverse={false}
+                  distance={40}
+                  duration={0.7}
+                  delay={0.8}
+                >
+                  <Education
+                    dateRange="2021 - 2023"
+                    course={t("education.network")}
+                    institution="EEEP Leonel de Moura Brizola"
+                  />
+                </AnimatedContent>
+                
+                <AnimatedContent
+                  direction="vertical"
+                  reverse={false}
+                  distance={40}
+                  duration={0.7}
+                  delay={0.9}
+                >
+                  <Education
+                    dateRange="2023 - 2023"
+                    course={t("education.networking")}
+                    institution="IBSEC"
+                  />
+                </AnimatedContent>
+                
+                <AnimatedContent
+                  direction="vertical"
+                  reverse={false}
+                  distance={40}
+                  duration={0.7}
+                  delay={1.0}
+                >
+                  <Education
+                    dateRange="2022 - 2022"
+                    course={t("education.assembly")}
+                    institution="EEEP Leonel de Moura Brizola"
+                  />
+                </AnimatedContent>
+                
+                <AnimatedContent
+                  direction="vertical"
+                  reverse={false}
+                  distance={40}
+                  duration={0.7}
+                  delay={1.1}
+                >
+                  <Education
+                    dateRange="2021 - 2021"
+                    course={t("education.programming")}
+                    institution="EEEP Leonel de Moura Brizola"
+                  />
+                </AnimatedContent>
               </div>
             </div>
           </div>
-
         </section>
         <Topic title={t("projects.title")} titledecoration="Projects" />
-        <section className="px-4 md:px-8 lg:px-16">
-          {/* Layout padrão: 1 coluna mobile, 2 colunas tablet, 3 colunas desktop */}
+        <section id="projects" className="px-4 md:px-8 lg:px-16 py-12" data-scroll data-scroll-speed="0.3">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            
-            {/* Projeto 1: Blog Petrus */}
-            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-200">
-              <ProjectsModal
-                coverImage={LogoBlog}
-                sourceVideo="https://hospedage.vercel.app/blog.mp4"
-                titleModalHover={t("projects.blog.title")}
-                descriptionProject={t("projects.blog.description")}
-                titleOfVideo={t("projects.blog.title")}
-                subtitleOfVideo={t("projects.blog.subtitle")}
-                linkCoverVideo="https://hospedage.vercel.app/blog-cover.png"
-                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/blog-petrus"
-                destinateLinkButtonWeb="https://blogpetrus.netlify.app/"
-              />
-            </div>
+            <ProjectCard
+              coverImage={LogoBlog}
+              title={t("projects.blog.title")}
+              description={t("projects.blog.description")}
+              linkCoverVideo="https://hospedage.vercel.app/blog-cover.png"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/blog-petrus"
+              destinateLinkButtonWeb="https://blogpetrus.netlify.app/"
+            />
 
-            {/* Projeto 2: Planner Web */}
-            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-300">
-              <ProjectsModal
-                coverImage={PlannerWebCapa}
-                sourceVideo="https://hospedandodnv.vercel.app/plannerwebedited.mp4"
-                titleModalHover={t("projects.planner.title")}
-                descriptionProject={t("projects.planner.description")}
-                titleOfVideo={t("projects.planner.title")}
-                subtitleOfVideo={t("projects.planner.subtitle")}
-                linkCoverVideo="https://hospedandodnv.vercel.app/thumb-plannerweb.png"
-                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/planner-web"
-              />
-            </div>
+            <ProjectCard
+              coverImage={PlannerWebCapa}
+              title={t("projects.planner.title")}
+              description={t("projects.planner.description")}
+              linkCoverVideo="https://hospedandodnv.vercel.app/thumb-plannerweb.png"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/planner-web"
+            />
 
-            {/* Projeto 3: Travelling */}
-            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-400">
-              <ProjectsModal
-                coverImage={LogoTravelling}
-                sourceVideo="https://hospedage.vercel.app/travelling.mp4"
-                titleModalHover={t("projects.travelling.title")}
-                descriptionProject={t("projects.travelling.description")}
-                titleOfVideo={t("projects.travelling.title")}
-                subtitleOfVideo={t("projects.travelling.subtitle")}
-                linkCoverVideo="https://hospedage.vercel.app/travelcover.png"
-                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/travelling"
-                destinateLinkButtonWeb="https://travelling-page.vercel.app/"
-              />
-            </div>
+            <ProjectCard
+              coverImage={LogoTravelling}
+              title={t("projects.travelling.title")}
+              description={t("projects.travelling.description")}
+              linkCoverVideo="https://hospedage.vercel.app/travelcover.png"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/travelling"
+              destinateLinkButtonWeb="https://travelling-page.vercel.app/"
+            />
 
-            {/* Projeto 4: Sacrosanctum */}
-            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-500">
-              <ProjectsModal
-                coverImage={sacrosanctumLogo}
-                titleModalHover={t("projects.sacrosanctum.title")}
-                descriptionProject={t("projects.sacrosanctum.description")}
-                titleOfVideo={t("projects.sacrosanctum.title")}
-                subtitleOfVideo={t("projects.sacrosanctum.subtitle")}
-                linkCoverVideo={sacrosanctumPage}
-                destinateLinkButtonWeb="https://sacrosanctum.vercel.app/"
-                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/sacrosanctum"
-              />
-            </div>
+            <ProjectCard
+              coverImage={sacrosanctumLogo}
+              title={t("projects.sacrosanctum.title")}
+              description={t("projects.sacrosanctum.description")}
+              linkCoverVideo={sacrosanctumPage}
+              destinateLinkButtonWeb="https://sacrosanctum.vercel.app/"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/sacrosanctum"
+            />
 
-            {/* Projeto 5: Planner App */}
-            <div className="flex justify-center animate-in slide-in-from-bottom duration-700 delay-600">
-              <ProjectsModal
-                coverImage={PlannerAppCapa}
-                sourceVideo="https://hospedandodnv.vercel.app/olannerappedited2.mp4"
-                titleModalHover={t("projects.plannerApp.title")}
-                descriptionProject={t("projects.plannerApp.description")}
-                titleOfVideo={t("projects.plannerApp.title")}
-                subtitleOfVideo={t("projects.plannerApp.subtitle")}
-                linkCoverVideo="https://hospedandodnv.vercel.app/plannerapp.png"
-                destinateLinkButtonGithub="https://github.com/PedroHenrique1606/plannerapp"
-              />
-            </div>
-
+            <ProjectCard
+              coverImage={PlannerAppCapa}
+              title={t("projects.plannerApp.title")}
+              description={t("projects.plannerApp.description")}
+              linkCoverVideo="https://hospedandodnv.vercel.app/plannerapp.png"
+              destinateLinkButtonGithub="https://github.com/PedroHenrique1606/plannerapp"
+            />
           </div>
         </section>
+        </main>
         <Footer />
       </div>
       

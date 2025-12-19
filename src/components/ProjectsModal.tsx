@@ -45,9 +45,10 @@ export function ProjectsModal({
             <div className="relative overflow-hidden">
               <Image
                 src={coverImage}
-                alt="Project cover"
+                alt={`Capa do projeto ${titleModalHover}`}
                 width={384}
                 height={216}
+                loading="lazy"
                 className="w-full h-48 object-cover transition-all duration-700 group-hover:scale-110"
               />
               
@@ -93,9 +94,10 @@ export function ProjectsModal({
             <div className="relative">
               <Image
                 src={linkCoverVideo}
-                alt="Project preview"
+                alt={`Preview do projeto ${titleModalHover}`}
                 width={800}
                 height={450}
+                loading="lazy"
                 className="w-full h-auto"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -116,9 +118,10 @@ export function ProjectsModal({
                 href={destinateLinkButtonWeb} 
                 target="_blank" 
                 rel="noopener noreferrer"
+                aria-label={`Ver projeto ${titleModalHover} na web`}
                 className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 bg-gradient-to-r from-purplePrimary to-blue-600 hover:from-purplePrimary/80 hover:to-blue-600/80 text-white font-medium text-sm rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
               >
-                <ArrowSquareOut size={16} />
+                <ArrowSquareOut size={16} aria-hidden="true" />
                 Ver Projeto
               </a>
             </div>
@@ -128,9 +131,10 @@ export function ProjectsModal({
               href={destinateLinkButtonGithub} 
               target="_blank" 
               rel="noopener noreferrer"
+              aria-label={`Ver repositório do projeto ${titleModalHover} no GitHub`}
               className="inline-flex items-center justify-center gap-2 w-full px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-medium text-sm rounded-lg border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-[1.02]"
             >
-              <GithubLogo size={16} />
+              <GithubLogo size={16} aria-hidden="true" />
               Ver Repositório
             </a>
           </div>

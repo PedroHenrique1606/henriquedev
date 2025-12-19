@@ -63,6 +63,7 @@ const config: Config = {
 			animation: {
 				orbit: 'orbit calc(var(--duration)*1s) linear infinite',
 				spotlight: "spotlight 2s ease .75s 1 forwards",
+				gradient: 'gradient 8s linear infinite',
 			},
 			keyframes: {
 				orbit: {
@@ -82,6 +83,11 @@ const config: Config = {
 						opacity: "1",
 						transform: "translate(-50%,-40%) scale(1)",
 					},
+				},
+				gradient: {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' },
 				},
 			}
 		}

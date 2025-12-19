@@ -11,8 +11,13 @@ export function LanguageSelector() {
       <Globe size={20} className="text-purplePrimary" />
       <div className="flex bg-customBlueSecondary rounded-lg p-1">
         <button
-          onClick={() => setLanguage("en")}
-          className={`px-3 py-1 text-sm font-medium rounded-md transition-all duration-300 ${
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setLanguage("en");
+          }}
+          className={`px-3 py-1 text-sm font-medium rounded-md transition-all duration-300 cursor-pointer ${
             language === "en"
               ? "bg-purplePrimary text-white"
               : "text-slate-400 hover:text-white"
@@ -21,8 +26,13 @@ export function LanguageSelector() {
           EN
         </button>
         <button
-          onClick={() => setLanguage("pt")}
-          className={`px-3 py-1 text-sm font-medium rounded-md transition-all duration-300 ${
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setLanguage("pt");
+          }}
+          className={`px-3 py-1 text-sm font-medium rounded-md transition-all duration-300 cursor-pointer ${
             language === "pt"
               ? "bg-purplePrimary text-white"
               : "text-slate-400 hover:text-white"

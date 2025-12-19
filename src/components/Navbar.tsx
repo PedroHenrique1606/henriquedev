@@ -1,155 +1,92 @@
 'use client'
-import Image from "next/image";
 import PedroLogo from "@/assets/logo-petrus.svg";
-import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { LanguageSelector } from "./LanguageSelector";
+import { useMemo, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
+const StaggeredMenu = dynamic(() => import("./StaggeredMenu").then(mod => ({ default: mod.StaggeredMenu })), {
+  ssr: false,
+  loading: () => null
+});
 
 const Navbar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t } = useLanguage();
+  const [mounted, setMounted] = useState(false);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const menuItems = useMemo(() => [
+    {
+      label: t("nav.home"),
+      ariaLabel: t("nav.home"),
+      link: "#home"
+    },
+    {
+      label: t("nav.about"),
+      ariaLabel: t("nav.about"),
+      link: "#about"
+    },
+    {
+      label: t("nav.experience"),
+      ariaLabel: t("nav.experience"),
+      link: "#experience"
+    },
+    {
+      label: t("nav.projects"),
+      ariaLabel: t("nav.projects"),
+      link: "#projects"
+    },
+    {
+      label: "Blog",
+      ariaLabel: "Blog",
+      link: "https://blogpetrus.netlify.app/"
+    }
+  ], [t]);
+
+  const socialItems = useMemo(() => [
+    {
+      label: "GitHub",
+      link: "https://github.com/PedroHenrique1606"
+    },
+    {
+      label: "LinkedIn",
+      link: "https://www.linkedin.com/in/pedro-henrique-melo-a7a700231"
+    },
+    {
+      label: "Instagram",
+      link: "https://www.instagram.com/pedrohenrique.trc/"
+    }
+  ], []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
-    <nav className="bg-customBlueSecondary p-5 fixed top-0 w-full z-[9999]">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo */}
-        <div className="text-white text-xl font-bold flex items-center gap-4">
-          <a href="/" className="no-underline flex gap-2">
-            <Image
-              src={PedroLogo}
-              alt="Logo of Pedro Henrique"
-              className="w-7"
-            />
-            <p>Pedro H</p>
-          </a>
-        </div>
-
-        {/* Menu for large screens */}
-        <div className="hidden md:flex items-center space-x-8">
-          <div className="flex space-x-8 font-medium">
-            <a
-              href="/"
-              className="text-white transition-all duration-150 hover:text-indigo-600"
-            >
-              {t("nav.home")}
-            </a>
-            <a
-              href="/about"
-              className="text-white transition-all duration-150 hover:text-indigo-600"
-            >
-              {t("nav.about")}
-            </a>
-            <a
-              href="#"
-              className="text-white transition-all duration-150 hover:text-indigo-600"
-            >
-              {t("nav.experience")}
-            </a>
-            <a
-              href="#"
-              className="text-white transition-all duration-150 hover:text-indigo-600"
-            >
-              {t("nav.projects")}
-            </a>
-            <a
-              href="https://blogpetrus.netlify.app/"
-              target="_blank"
-              className="text-white transition-all duration-150 hover:text-indigo-600"
-            >
-              Blog
-            </a>
-          </div>
+    <StaggeredMenu
+      isFixed={true}
+      position="right"
+      colors={['#0E1B31', '#102048', '#614FD0']}
+      items={menuItems}
+      socialItems={socialItems}
+      displaySocials={true}
+      displayItemNumbering={true}
+      logoUrl={PedroLogo.src}
+      menuButtonColor="#ffffff"
+      openMenuButtonColor="#614FD0"
+      accentColor="#614FD0"
+      changeMenuColorOnOpen={true}
+      closeOnClickAway={true}
+      className="custom-theme-staggered-menu"
+      customFooterContent={
+        <div className="sm-language-selector">
           <LanguageSelector />
         </div>
-
-        {/* Hamburger icon for mobile */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-white">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Dropdown Menu for mobile - Full screen with X to close */}
-      {isMenuOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-customBlueSecondary text-white font-medium p-8 transition-all duration-500 ease-in-out transform md:hidden">
-          <div className="flex justify-between items-center">
-            <div className="text-white text-xl font-bold flex items-center gap-4">
-              <a href="/" className="no-underline flex gap-2">
-                <Image
-                  src={PedroLogo}
-                  alt="Logo of Pedro Henrique"
-                  className="w-7"
-                />
-                <p>Pedro H</p>
-              </a>
-            </div>
-
-            {/* Close button */}
-            <button onClick={toggleMenu} className="text-white text-3xl">
-              &times; {/* "X" icon */}
-            </button>
-          </div>
-
-          <div className="mt-8 space-y-6">
-            <a
-              href="/"
-              className="block transition-all duration-150 hover:text-indigo-600"
-              onClick={() => setIsMenuOpen(false)} // Close menu when clicked
-            >
-              {t("nav.home")}
-            </a>
-            <a
-              href="/about"
-              className="block transition-all duration-150 hover:text-indigo-600"
-              onClick={() => setIsMenuOpen(false)} // Close menu when clicked
-            >
-              {t("nav.about")}
-            </a>
-            <a
-              href="#"
-              className="block transition-all duration-150 hover:text-indigo-600"
-              onClick={() => setIsMenuOpen(false)} // Close menu when clicked
-            >
-              {t("nav.experience")}
-            </a>
-            <a
-              href="#"
-              className="block transition-all duration-150 hover:text-indigo-600"
-              onClick={() => setIsMenuOpen(false)} // Close menu when clicked
-            >
-              {t("nav.projects")}
-            </a>
-            <a
-              href="https://blogpetrus.netlify.app/"
-              target="_blank"
-              className="block transition-all duration-150 hover:text-indigo-600"
-              onClick={() => setIsMenuOpen(false)} // Close menu when clicked
-            >
-              Blog
-            </a>
-            <div className="pt-4">
-              <LanguageSelector />
-            </div>
-          </div>
-        </div>
-      )}
-    </nav>
+      }
+    />
   );
 };
 

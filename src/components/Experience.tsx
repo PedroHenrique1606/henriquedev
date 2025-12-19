@@ -1,13 +1,13 @@
 import React from 'react';
 import ElectricBorder from './ElectricBorder';
 
-interface EducationProps {
+interface ExperienceProps {
     dateRange: string;
-    course: string;
-    institution: string;
+    role: string;
+    company: string;
 }
 
-export const Education: React.FC<EducationProps> = ({ dateRange, course, institution }) => {
+export const Experience: React.FC<ExperienceProps> = ({ dateRange, role, company }) => {
     return (
         <ElectricBorder
             color="#614FD0"
@@ -23,10 +23,10 @@ export const Education: React.FC<EducationProps> = ({ dateRange, course, institu
                             {dateRange}
                         </p>
                         <h3 className="text-white font-bold text-lg group-hover:text-purplePrimary transition-colors duration-300">
-                            {course}
+                            {role}
                         </h3>
                         <p className="text-slate-400 text-sm group-hover:text-slate-300 transition-colors duration-300">
-                            {institution}
+                            {company}
                         </p>
                     </div>
                     <div className="w-2 h-2 rounded-full bg-purplePrimary group-hover:scale-150 transition-transform duration-300 mt-2"></div>
@@ -35,3 +35,4 @@ export const Education: React.FC<EducationProps> = ({ dateRange, course, institu
         </ElectricBorder>
     );
 };
+

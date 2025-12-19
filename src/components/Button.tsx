@@ -15,14 +15,15 @@ export const Button: React.FC<ButtonProps> = ({
     <div className="bg-purplePrimary rounded-xl py-4 px-5 text-white flex items-center space-x-2 hover:bg-purplePrimary/90 hover:cursor-pointer w-max">
       <a
         href={destineLink}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={destineLink?.startsWith('http') ? "_blank" : undefined}
+        rel={destineLink?.startsWith('http') ? "noopener noreferrer" : undefined}
         className="text-white font-medium"
+        aria-label={text}
       >
         {text}
       </a>
       {IconComponent && (
-        <IconComponent className="text-white" size={20} weight="fill" />
+        <IconComponent className="text-white" size={20} weight="fill" aria-hidden="true" />
       )}
     </div>
   );

@@ -8,7 +8,7 @@ export const translations = {
     
     // Hero Section
     "hero.greeting": "Hi! I'm Pedro Henrique",
-    "hero.role": "Web Developer",
+    "hero.role": "FullStack Developer",
     "hero.description.line1": "Hi, my name is Pedro Henrique!",
     "hero.description.line2": "I'm able to develop modern, responsive websites,",
     "hero.description.line3": "with scalability, clean code and easy maintenance.",
@@ -20,7 +20,7 @@ export const translations = {
     "about.title": "About Me",
     "about.subtitle": "I'm a",
     "about.name": "Pedro Henrique",
-    "about.role": "Web Developer",
+    "about.role": "FullStack Developer",
     "about.paragraph1": "I am a Software Developer active since 2022, with experience in Mobile, Back-end development and focus on Web, concentrating on creating applications with emphasis on performance, user experience, and SEO strategies.",
     "about.paragraph2": "I have experience developing full-stack solutions, participating in the entire project lifecycle, from requirements gathering to deployment, in addition to working in mentoring and technical support.",
     "about.paragraph3": "My expertise includes the use of React, React Native, Node.js, TypeScript, Fastify, PostgreSQL, Docker, DigitalOcean and Angular, covering the development of REST APIs, responsive interfaces, mobile applications and structuring deployment architectures with CI/CD.",
@@ -48,6 +48,9 @@ export const translations = {
     "education.intern": "Front End Intern",
     "education.assembly": "Monitoring of Assembly and Installation of Systems",
     "education.programming": "Analysis and Programming Monitoring",
+    "experience.professional": "Professional Experience",
+    "experience.mobileDeveloper": "Mobile Developer",
+    "experience.senior": "Senior",
 
     // Projects Section
     "projects.title": "Projects",
@@ -73,7 +76,7 @@ export const translations = {
     "date.onHold": "On hold",
 
     // Footer
-    "footer.role": "Web Developer",
+    "footer.role": "FullStack Developer",
     "footer.aboutMore": "About More",
     "footer.followMe": "Follow Me",
     "footer.copyright": "All rights reserved",
@@ -87,7 +90,7 @@ export const translations = {
     
     // Hero Section
     "hero.greeting": "Olá! Eu sou Pedro Henrique",
-    "hero.role": "Desenvolvedor Web",
+    "hero.role": "Desenvolvedor FullStack",
     "hero.description.line1": "Olá, meu nome é Pedro Henrique!",
     "hero.description.line2": "Sou capaz de desenvolver sites modernos e responsivos,",
     "hero.description.line3": "com escalabilidade, código limpo e fácil manutenção.",
@@ -99,7 +102,7 @@ export const translations = {
     "about.title": "Sobre Mim",
     "about.subtitle": "Eu sou um",
     "about.name": "Pedro Henrique",
-    "about.role": "Desenvolvedor Web",
+    "about.role": "Desenvolvedor FullStack",
     "about.paragraph1": "Sou um Desenvolvedor de Software ativo desde 2022, com experiência em desenvolvimento Mobile, Back-end e foco em Web, concentrando-me na criação de aplicações com ênfase em performance, experiência do usuário e estratégias de SEO.",
     "about.paragraph2": "Tenho experiência no desenvolvimento de soluções full-stack, participando de todo o ciclo de vida do projeto, desde levantamento de requisitos até deploy, além de atuar na mentoria e suporte técnico.",
     "about.paragraph3": "Minha expertise inclui o uso de React, React Native, Node.js, TypeScript, Fastify, PostgreSQL, Docker, DigitalOcean e Angular, cobrindo o desenvolvimento de APIs REST, interfaces responsivas, aplicações móveis e estruturação de arquiteturas de deploy com CI/CD.",
@@ -116,6 +119,7 @@ export const translations = {
     "experience.description.line2": "desenvolvimento front-end.",
     "experience.description.line3": "Confira algumas das minhas habilidades abaixo.",
     "experience.education": "Educação",
+    "experience.professional": "Experiência Profissional",
     "experience.skills": "Habilidades",
 
     // Education Items
@@ -127,6 +131,8 @@ export const translations = {
     "education.intern": "Estagiário Front End",
     "education.assembly": "Monitoria de Montagem e Instalação de Sistemas",
     "education.programming": "Monitoria de Análise e Programação",
+    "experience.mobileDeveloper": "Desenvolvedor Mobile",
+    "experience.senior": "Pleno",
 
     // Projects Section
     "projects.title": "Projetos",
@@ -152,7 +158,7 @@ export const translations = {
     "date.onHold": "Em Pausa",
 
     // Footer
-    "footer.role": "Desenvolvedor Web",
+    "footer.role": "Desenvolvedor FullStack",
     "footer.aboutMore": "Mais Sobre",
     "footer.followMe": "Me Siga",
     "footer.copyright": "Todos os direitos reservados",
