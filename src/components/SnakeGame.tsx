@@ -24,7 +24,7 @@ interface SnakeGameProps {
 
 // Constantes do jogo
 const GRID_SIZE = 20;
-const CELL_SIZE = 15;
+const CELL_SIZE = 30;
 const INITIAL_SPEED = 150;
 const MIN_SPEED = 80;
 const SPEED_INCREMENT = 5;
@@ -144,8 +144,7 @@ export const SnakeGame = ({ onClose }: SnakeGameProps) => {
         newSnake.pop();
         return {
           ...currentState,
-          snake: newSnake,
-          direction: direction
+          snake: newSnake
         };
       }
     });
@@ -235,159 +234,217 @@ export const SnakeGame = ({ onClose }: SnakeGameProps) => {
     };
   }, [moveSnake, gameState.gameStarted, gameState.isPaused, gameState.gameOver, gameState.speed]);
 
-  // Memoized values para otimizar re-renders
-  const gridStyle = useMemo(() => ({
-    width: `${GRID_SIZE * CELL_SIZE}px`,
-    height: `${GRID_SIZE * CELL_SIZE}px`
-  }), []);
-
-  const currentLang = useMemo(() => 
-    (localStorage.getItem('language') as 'en' | 'pt') || 'pt', []
-  );
+  const currentLang = useMemo(() => {
+    if (typeof window === 'undefined') return 'pt';
+    return (localStorage.getItem('language') as 'en' | 'pt') || 'pt';
+  }, []);
 
   return (
-    <div className="flex flex-col items-center space-y-4 p-4">
-      {/* Header do jogo */}
-      <div className="flex justify-between items-center w-full max-w-md">
-        <div className="text-white font-bold">
-          {currentLang === 'pt' ? 'Pontuação' : 'Score'}: 
-          <span className="text-purplePrimary ml-1">{gameState.score}</span>
-          <span className="text-xs text-slate-400 ml-2">
-            ({currentLang === 'pt' ? 'Velocidade' : 'Speed'}: {Math.round((INITIAL_SPEED - gameState.speed) / SPEED_INCREMENT + 1)})
-          </span>
-        </div>
-        <button
-          onClick={onClose}
-          className="text-slate-400 hover:text-white transition-colors text-xl hover:scale-110"
+    <div className="w-full h-full flex gap-6 px-6 py-6">
+      {/* Left - Game Board (Main) */}
+      <div className="flex-1 flex items-center justify-center">
+        <div 
+          className="relative bg-gradient-to-br from-slate-900 to-black border-4 border-purplePrimary/50 rounded-2xl overflow-hidden shadow-2xl"
+          style={{
+            width: `${GRID_SIZE * CELL_SIZE}px`,
+            height: `${GRID_SIZE * CELL_SIZE}px`
+          }}
         >
-          ✕
-        </button>
-      </div>
+          {gameState.snake.map((segment, index) => (
+            <div
+              key={`${segment.x}-${segment.y}-${index}`}
+              className={`absolute transition-all duration-75 ${
+                index === 0 
+                  ? 'bg-gradient-to-br from-purplePrimary to-purple-500 shadow-lg shadow-purplePrimary/50' 
+                  : 'bg-gradient-to-br from-purple-400 to-purple-500'
+              }`}
+              style={{
+                left: `${segment.x * CELL_SIZE}px`,
+                top: `${segment.y * CELL_SIZE}px`,
+                width: `${CELL_SIZE}px`,
+                height: `${CELL_SIZE}px`,
+                borderRadius: '4px',
+                zIndex: gameState.snake.length - index,
+                border: index === 0 ? '2px solid rgba(255,255,255,0.3)' : 'none'
+              }}
+            />
+          ))}
 
-      {/* Grid do jogo com melhor performance */}
-      <div 
-        className="relative bg-slate-900 border-2 border-purplePrimary/50 rounded-lg overflow-hidden shadow-lg"
-        style={gridStyle}
-      >
-        {/* Cobra renderizada de forma otimizada */}
-        {gameState.snake.map((segment, index) => (
           <div
-            key={`${segment.x}-${segment.y}-${index}`}
-            className={`absolute transition-all duration-75 ${
-              index === 0 
-                ? 'bg-purplePrimary shadow-sm shadow-purplePrimary/50' 
-                : 'bg-purple-400'
-            } ${index === 0 ? 'border-2 border-purple-300' : 'border border-purple-300/50'}`}
+            className="absolute bg-gradient-to-br from-red-500 to-red-600 rounded-lg shadow-lg shadow-red-500/50 animate-pulse"
             style={{
-              left: `${segment.x * CELL_SIZE}px`,
-              top: `${segment.y * CELL_SIZE}px`,
+              left: `${gameState.food.x * CELL_SIZE}px`,
+              top: `${gameState.food.y * CELL_SIZE}px`,
               width: `${CELL_SIZE}px`,
               height: `${CELL_SIZE}px`,
-              borderRadius: index === 0 ? '3px' : '2px',
-              zIndex: gameState.snake.length - index
+              borderRadius: '4px'
             }}
           />
-        ))}
 
-        {/* Comida com animação pulsante */}
-        <div
-          className="absolute bg-red-500 rounded-full border-2 border-red-300 animate-pulse shadow-sm shadow-red-500/50"
-          style={{
-            left: `${gameState.food.x * CELL_SIZE}px`,
-            top: `${gameState.food.y * CELL_SIZE}px`,
-            width: `${CELL_SIZE}px`,
-            height: `${CELL_SIZE}px`
-          }}
-        />
+          {(!gameState.gameStarted || gameState.isPaused || gameState.gameOver) && (
+            <div className="absolute inset-0 bg-gradient-to-b from-black/95 via-black/90 to-purplePrimary/10 backdrop-blur-md flex flex-col items-center justify-center text-white text-center z-50">
+              {!gameState.gameStarted && (
+                <div className="space-y-8 animate-in fade-in duration-500">
+                  {/* Gamepad Icon with glow */}
+                  <div className="relative flex justify-center">
+                    <div className="absolute inset-0 w-32 h-32 bg-purplePrimary/30 rounded-full blur-3xl animate-pulse"></div>
+                    <div className="relative text-9xl drop-shadow-2xl animate-bounce" style={{ animationDuration: '2s' }}>
+                      🎮
+                    </div>
+                  </div>
 
-        {/* Overlay de estado melhorado */}
-        {(!gameState.gameStarted || gameState.isPaused || gameState.gameOver) && (
-          <div className="absolute inset-0 bg-black/85 backdrop-blur-sm flex flex-col items-center justify-center text-white text-center">
-            {!gameState.gameStarted && (
-              <>
-                <h3 className="text-xl font-bold mb-2">🐍 SNAKE GAME</h3>
-                <p className="text-sm mb-4 animate-pulse">
-                  {currentLang === 'pt' ? 'Pressione ESPAÇO para começar' : 'Press SPACE to start'}
-                </p>
-                
-                {/* Controles visuais */}
-                <div className="flex flex-col items-center space-y-3 mb-4">
-                  <div className="text-xs text-slate-300">
-                    {currentLang === 'pt' ? 'Controles de movimento:' : 'Movement controls:'}
+                  {/* Main Text */}
+                  <div className="space-y-3">
+                    <h2 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-purplePrimary via-blue-500 to-purple-400 bg-clip-text text-transparent">
+                      {currentLang === 'pt' ? 'Pronto para Jogar?' : 'Ready to Play?'}
+                    </h2>
+                    
+                    {/* Press SPACE indicator */}
+                    <div className="flex items-center justify-center gap-2 text-2xl font-bold text-white pt-2">
+                      <span className="animate-pulse">▶</span>
+                      <span className="bg-gradient-to-r from-slate-200 to-slate-300 bg-clip-text text-transparent inline-block">
+                        {currentLang === 'pt' ? 'Pressione ESPAÇO' : 'Press SPACE'}
+                      </span>
+                      <span className="animate-pulse">◀</span>
+                    </div>
+                  </div>
+
+                  {/* Quick Tips */}
+                  <div className="bg-gradient-to-r from-slate-800/30 to-slate-700/30 backdrop-blur border border-slate-600/30 rounded-xl p-4 max-w-xs text-sm text-slate-300 space-y-2">
+                    <p className="flex items-center justify-center gap-2">
+                      <span>🕹️</span>
+                      <span>{currentLang === 'pt' ? 'Use setas ou WASD para mover' : 'Use arrows or WASD to move'}</span>
+                    </p>
+                    <p className="flex items-center justify-center gap-2">
+                      <span>⭐</span>
+                      <span>{currentLang === 'pt' ? 'Ganhe pontos comendo' : 'Score by eating food'}</span>
+                    </p>
+                  </div>
+                </div>
+              )}
+              
+              {gameState.isPaused && !gameState.gameOver && (
+                <div className="space-y-6 animate-in fade-in duration-300">
+                  <div className="relative flex justify-center">
+                    <div className="absolute inset-0 w-28 h-28 bg-blue-500/20 rounded-full blur-3xl"></div>
+                    <div className="relative text-8xl drop-shadow-2xl">⏸️</div>
                   </div>
                   
-                  <div className="flex items-center space-x-4">
-                    {/* Setas */}
-                    <div className="flex flex-col items-center">
-                      <div className="text-xs text-slate-400 mb-1">
-                        {currentLang === 'pt' ? 'Setas' : 'Arrows'}
-                      </div>
-                      <div className="grid grid-cols-3 gap-1">
-                        <div></div>
-                        <div className="bg-slate-700 rounded px-2 py-1 text-xs">↑</div>
-                        <div></div>
-                        <div className="bg-slate-700 rounded px-2 py-1 text-xs">←</div>
-                        <div className="bg-slate-700 rounded px-2 py-1 text-xs">↓</div>
-                        <div className="bg-slate-700 rounded px-2 py-1 text-xs">→</div>
-                      </div>
-                    </div>
-
-                    <div className="text-slate-500">OU</div>
-
-                    {/* WASD */}
-                    <div className="flex flex-col items-center">
-                      <div className="text-xs text-slate-400 mb-1">WASD</div>
-                      <div className="grid grid-cols-3 gap-1">
-                        <div></div>
-                        <div className="bg-slate-700 rounded px-2 py-1 text-xs">W</div>
-                        <div></div>
-                        <div className="bg-slate-700 rounded px-2 py-1 text-xs">A</div>
-                        <div className="bg-slate-700 rounded px-2 py-1 text-xs">S</div>
-                        <div className="bg-slate-700 rounded px-2 py-1 text-xs">D</div>
-                      </div>
-                    </div>
+                  <div className="space-y-2">
+                    <p className="text-4xl font-black bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">
+                      {currentLang === 'pt' ? 'PAUSADO' : 'PAUSED'}
+                    </p>
+                    <p className="text-slate-400 text-sm">{currentLang === 'pt' ? 'Pressione P para continuar' : 'Press P to resume'}</p>
                   </div>
                 </div>
+              )}
+              
+              {gameState.gameOver && (
+                <div className="space-y-6 animate-in fade-in duration-300">
+                  <div className="relative flex justify-center">
+                    <div className="absolute inset-0 w-32 h-32 bg-red-600/20 rounded-full blur-3xl"></div>
+                    <div className="relative text-9xl drop-shadow-2xl animate-pulse">💀</div>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    <h2 className="text-5xl font-black bg-gradient-to-r from-red-400 to-orange-300 bg-clip-text text-transparent">
+                      {currentLang === 'pt' ? 'GAME OVER' : 'GAME OVER'}
+                    </h2>
+                    
+                    <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur border border-slate-600/30 rounded-xl p-6 space-y-2">
+                      <p className="text-slate-400 text-sm uppercase tracking-wider">{currentLang === 'pt' ? 'Pontuação Final' : 'Final Score'}</p>
+                      <p className="text-5xl font-black bg-gradient-to-r from-yellow-400 to-amber-300 bg-clip-text text-transparent">
+                        {gameState.score}
+                      </p>
+                    </div>
 
-                <div className="text-xs text-slate-400 space-y-1">
-                  <p>P {currentLang === 'pt' ? 'para pausar' : 'to pause'} | ESC {currentLang === 'pt' ? 'para sair' : 'to exit'}</p>
+                    <p className="text-slate-400 text-sm pt-2">{currentLang === 'pt' ? 'Pressione R para jogar novamente' : 'Press R to play again'}</p>
+                  </div>
                 </div>
-              </>
-            )}
-            
-            {gameState.isPaused && !gameState.gameOver && (
-              <>
-                <h3 className="text-xl font-bold mb-2 animate-pulse">⏸️ {currentLang === 'pt' ? 'PAUSADO' : 'PAUSED'}</h3>
-                <p className="text-sm">
-                  {currentLang === 'pt' ? 'Pressione P para continuar' : 'Press P to continue'}
-                </p>
-              </>
-            )}
-            
-            {gameState.gameOver && (
-              <div className="animate-in slide-in-from-bottom duration-300">
-                <h3 className="text-xl font-bold mb-2">💀 GAME OVER</h3>
-                <p className="text-sm mb-2">
-                  {currentLang === 'pt' ? 'Pontuação Final' : 'Final Score'}: 
-                  <span className="text-purplePrimary font-bold ml-1">{gameState.score}</span>
-                </p>
-                <p className="text-xs text-slate-300 animate-pulse">
-                  {currentLang === 'pt' ? 'Pressione R para jogar novamente' : 'Press R to play again'}
-                </p>
-              </div>
-            )}
-          </div>
-        )}
+              )}
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Controles aprimorados */}
-      <div className="text-xs text-slate-400 text-center max-w-md">
-        <p>🎮 {currentLang === 'pt' ? 'Controles' : 'Controls'}: ↑↓←→ / WASD | P {currentLang === 'pt' ? '(pausar)' : '(pause)'} | ESC {currentLang === 'pt' ? '(sair)' : '(exit)'}</p>
-        {gameState.gameStarted && (
-          <p className="text-xs text-slate-500 mt-1">
-            {currentLang === 'pt' ? 'A velocidade aumenta a cada comida!' : 'Speed increases with each food!'}
+      {/* Right - Stats & Controls Panel */}
+      <div className="w-80 flex flex-col gap-4 overflow-y-auto pr-2">
+        {/* Header Title */}
+        <div className="text-center mb-2">
+          <h2 className="text-2xl font-black text-white mb-1">🐍 SNAKE</h2>
+          <div className="h-1 w-16 bg-gradient-to-r from-purplePrimary to-blue-500 rounded-full mx-auto"></div>
+        </div>
+
+        {/* Score Card */}
+        <div className="bg-gradient-to-br from-purplePrimary/20 to-blue-600/20 backdrop-blur-xl border border-purplePrimary/50 rounded-xl p-5">
+          <p className="text-slate-400 text-xs uppercase tracking-wider mb-2">{currentLang === 'pt' ? 'Pontuação' : 'Score'}</p>
+          <p className="text-5xl font-black bg-gradient-to-r from-purplePrimary to-blue-400 bg-clip-text text-transparent">
+            {gameState.score}
           </p>
-        )}
+        </div>
+
+        {/* Speed Card */}
+        <div className="bg-gradient-to-br from-slate-700/30 to-slate-800/30 backdrop-blur-xl border border-slate-600/50 rounded-xl p-4">
+          <p className="text-slate-400 text-xs uppercase tracking-wider mb-3">{currentLang === 'pt' ? 'Velocidade' : 'Speed'}</p>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-3xl font-bold text-purple-400">{Math.round((INITIAL_SPEED - gameState.speed) / SPEED_INCREMENT + 1)}</span>
+              <span className="text-xs text-slate-500">/ 17</span>
+            </div>
+            <div className="w-full bg-slate-700/50 rounded-full h-3 overflow-hidden">
+              <div 
+                className="bg-gradient-to-r from-purplePrimary to-blue-500 h-full transition-all duration-300"
+                style={{ width: `${((INITIAL_SPEED - gameState.speed) / (INITIAL_SPEED - MIN_SPEED)) * 100}%` }}
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Size Card */}
+        <div className="bg-gradient-to-br from-slate-700/30 to-slate-800/30 backdrop-blur-xl border border-slate-600/50 rounded-xl p-4">
+          <p className="text-slate-400 text-xs uppercase tracking-wider mb-2">{currentLang === 'pt' ? 'Tamanho da Cobra' : 'Snake Size'}</p>
+          <p className="text-4xl font-black text-purple-400">{gameState.snake.length}</p>
+        </div>
+
+        {/* Controls Info */}
+        <div className="bg-gradient-to-br from-blue-900/20 to-cyan-900/20 backdrop-blur-xl border border-blue-600/30 rounded-xl p-4">
+          <p className="text-blue-300 text-xs uppercase tracking-wider font-bold mb-3">🎮 {currentLang === 'pt' ? 'Controles' : 'Controls'}</p>
+          <div className="text-slate-300 text-sm space-y-2">
+            <p>• <span className="font-bold">↑↓←→</span> / <span className="font-bold">WASD</span> - {currentLang === 'pt' ? 'Mover' : 'Move'}</p>
+            <p>• <span className="font-bold">SPACE</span> - {currentLang === 'pt' ? 'Iniciar/Pausar' : 'Start/Pause'}</p>
+            <p>• <span className="font-bold">P</span> - {currentLang === 'pt' ? 'Pausar' : 'Pause'}</p>
+            <p>• <span className="font-bold">R</span> - {currentLang === 'pt' ? 'Reiniciar' : 'Reset'}</p>
+            <p>• <span className="font-bold">ESC</span> - {currentLang === 'pt' ? 'Menu' : 'Menu'}</p>
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <div className="space-y-3 mt-auto pt-4 border-t border-slate-700/30">
+          <button
+            onClick={() => setGameState(prev => ({ ...prev, gameStarted: !prev.gameStarted, isPaused: false }))}
+            className="w-full bg-gradient-to-r from-purplePrimary to-blue-600 hover:from-purple-600 hover:to-blue-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
+          >
+            {gameState.gameStarted ? (
+              <>{currentLang === 'pt' ? '⏸️ PAUSAR' : '⏸️ PAUSE'}</>
+            ) : (
+              <>{currentLang === 'pt' ? '▶️ INICIAR' : '▶️ START'}</>
+            )}
+          </button>
+
+          <button
+            onClick={resetGame}
+            className="w-full bg-gradient-to-r from-slate-700 to-slate-800 hover:from-slate-600 hover:to-slate-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
+          >
+            {currentLang === 'pt' ? '🔄 REINICIAR' : '🔄 RESET'}
+          </button>
+
+          <button
+            onClick={onClose}
+            className="w-full bg-gradient-to-r from-red-900/50 to-red-800/50 hover:from-red-800 hover:to-red-700 text-red-100 font-bold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
+          >
+            {currentLang === 'pt' ? '↩️ VOLTAR' : '↩️ BACK'}
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -50,7 +50,7 @@ export const translations = {
     "education.programming": "Analysis and Programming Monitoring",
     "experience.professional": "Professional Experience",
     "experience.mobileDeveloper": "Mobile Developer",
-    "experience.senior": "Senior",
+    "experience.senior": "Pleno",
 
     // Projects Section
     "projects.title": "Projects",

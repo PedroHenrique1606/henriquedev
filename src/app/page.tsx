@@ -24,7 +24,6 @@ import { Education } from "@/components/Education";
 import { Experience } from "@/components/Experience";
 import ProfileCard from "@/components/ProfileCard";
 import { EasterEggConfetti } from "@/components/EasterEggConfetti";
-import { EasterEggModal } from "@/components/EasterEggModal";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -50,7 +49,7 @@ import Image from "next/image";
 
 export default function Home() {
   const { t } = useLanguage();
-  const { isActivated, closeEasterEgg } = useKonamiCode();
+  useKonamiCode();
   useSmoothScroll();
   
   return (
@@ -603,8 +602,6 @@ export default function Home() {
       </div>
       
       {/* 🎮 EASTER EGG - Konami Code */}
-      <EasterEggConfetti isActive={isActivated} />
-      <EasterEggModal isActive={isActivated} onClose={closeEasterEgg} />
     </div>
   );
 }

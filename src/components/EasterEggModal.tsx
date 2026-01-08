@@ -12,6 +12,7 @@ interface EasterEggModalProps {
 export const EasterEggModal = ({ isActive, onClose }: EasterEggModalProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showIntro, setShowIntro] = useState(true);
+  const [currentLang, setCurrentLang] = useState<'en' | 'pt'>('pt');
 
   // Controle de fechamento
   const handleClose = useCallback(() => {
@@ -41,6 +42,11 @@ export const EasterEggModal = ({ isActive, onClose }: EasterEggModalProps) => {
   }, [isVisible, handleClose]);
 
   useEffect(() => {
+    const lang = (typeof window !== 'undefined' ? localStorage.getItem('language') : null) as 'en' | 'pt' || 'pt';
+    setCurrentLang(lang || 'pt');
+  }, []);
+
+  useEffect(() => {
     if (isActive) {
       setIsVisible(true);
       setShowIntro(true);
@@ -58,21 +64,26 @@ export const EasterEggModal = ({ isActive, onClose }: EasterEggModalProps) => {
 
   if (!isVisible) return null;
 
-  const currentLang = localStorage.getItem('language') as 'en' | 'pt' || 'pt';
-
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-in fade-in duration-300"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      style={{ 
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0
+      }}
       onClick={handleOverlayClick}
     >
-      <div className="relative bg-gradient-to-br from-purplePrimary/20 to-blue-600/20 backdrop-blur-xl border-2 border-purplePrimary/50 rounded-2xl p-6 mx-4 max-w-2xl w-full animate-in slide-in-from-bottom duration-500">
+      <div className="relative z-50 bg-gradient-to-br from-purplePrimary/20 to-blue-600/20 backdrop-blur-xl border-2 border-purplePrimary/50 rounded-2xl p-6 mx-4 max-w-2xl w-full">
         
         {/* Efeito de brilho */}
         <div className="absolute inset-0 bg-gradient-to-r from-purplePrimary/20 via-transparent to-blue-600/20 rounded-2xl animate-pulse"></div>
         
         {showIntro ? (
           // Tela de introdução
-          <div className="relative z-10 text-center space-y-6 py-8">
+          <div className="relative z-20 text-center space-y-6 py-8">
             {/* Ícones flutuantes */}
             <div className="absolute -top-4 -right-4 animate-bounce delay-100">
               <div className="bg-purplePrimary rounded-full p-2">
@@ -136,7 +147,7 @@ export const EasterEggModal = ({ isActive, onClose }: EasterEggModalProps) => {
           </div>
         ) : (
           // Tela do jogo
-          <div className="relative z-10">
+          <div className="relative z-20">
             <div className="text-center mb-4">
               <h2 className="text-xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
                 🐍 {currentLang === 'pt' ? 'JOGO DA COBRINHA' : 'SNAKE GAME'} 🐍

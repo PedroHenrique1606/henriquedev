@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
+import { useRouter } from 'next/navigation';
 
 const KONAMI_CODE = [
   'ArrowUp',
@@ -12,20 +13,11 @@ const KONAMI_CODE = [
 ];
 
 export const useKonamiCode = () => {
-  const [isActivated, setIsActivated] = useState(false);
-
-  const resetKeys = useCallback(() => {
-    // Reset função mantida para compatibilidade
-  }, []);
+  const router = useRouter();
 
   const activateEasterEgg = useCallback(() => {
-    setIsActivated(true);
-  }, []);
-
-  const closeEasterEgg = useCallback(() => {
-    setIsActivated(false);
-    resetKeys();
-  }, [resetKeys]);
+    router.push('/snake');
+  }, [router]);
 
   useEffect(() => {
     let keySequence: string[] = [];
@@ -68,5 +60,5 @@ export const useKonamiCode = () => {
     };
   }, [activateEasterEgg]);
 
-  return { isActivated, resetKeys, closeEasterEgg };
+  return {};
 };
