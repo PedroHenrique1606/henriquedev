@@ -121,7 +121,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
     const itemEls = Array.from(panel.querySelectorAll('.sm-panel-itemLabel')) as HTMLElement[];
     const numberEls = Array.from(
-      panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item')
+      panel.querySelectorAll('.sm-panel-itemNumber')
     ) as HTMLElement[];
     const socialTitle = panel.querySelector('.sm-socials-title') as HTMLElement | null;
     const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link')) as HTMLElement[];
@@ -236,7 +236,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 });
 
         const numberEls = Array.from(
-          panel.querySelectorAll('.sm-panel-list[data-numbering] .sm-panel-item')
+          panel.querySelectorAll('.sm-panel-itemNumber')
         ) as HTMLElement[];
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (numberEls.length) gsap.set(numberEls, { ['--sm-num-opacity' as any]: 0 });
@@ -490,7 +490,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 items.map((it, idx) => (
                   <li className="sm-panel-itemWrap relative overflow-hidden leading-none" key={it.label + idx}>
                     <a
-                      className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
+                      className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear no-underline flex items-start gap-3 w-full"
                       href={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
@@ -523,7 +523,12 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         }
                       }}
                     >
-                      <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
+                      {displayItemNumbering && (
+                        <span className="sm-panel-itemNumber shrink-0 text-lg font-normal leading-none pt-[0.35em] [color:var(--sm-accent,#5227FF)] [opacity:var(--sm-num-opacity,0)]" aria-hidden="true">
+                          {String(idx + 1).padStart(2, '0')}
+                        </span>
+                      )}
+                      <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform min-w-0 flex-1">
                         {it.label}
                       </span>
                     </a>

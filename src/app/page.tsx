@@ -373,14 +373,7 @@ export default function Home() {
 
         <Topic title={t("experience.title")} titledecoration="Experience" />
         <section id="experience" className="flex items-center justify-center space-y-12 flex-col mx-4 md:mx-8 lg:mx-16 py-12">
-          <AnimatedContent
-            direction="vertical"
-            reverse={true}
-            distance={30}
-            duration={0.8}
-            delay={0}
-            className="space-y-4 text-center max-w-3xl"
-          >
+          <div className="space-y-4 text-center max-w-3xl">
             <h4 className="font-bold text-white text-4xl md:text-5xl bg-gradient-to-r from-white to-purplePrimary bg-clip-text text-transparent">
               {t("experience.subtitle")}
             </h4>
@@ -390,162 +383,68 @@ export default function Home() {
               <br />
               {t("experience.description.line3")}
             </p>
-          </AnimatedContent>
-          
+          </div>
+
           <div className="w-full max-w-4xl space-y-12">
-            {/* Experiência Profissional */}
             <div>
-              <AnimatedContent
-                direction="horizontal"
-                reverse={true}
-                distance={30}
-                duration={0.6}
-                delay={0.2}
-                className="mb-8"
-              >
-                <div className="inline-block">
-                  <span className="text-purplePrimary text-sm font-bold uppercase tracking-widest px-4 py-2 bg-purplePrimary/10 rounded-full border border-purplePrimary/30">
-                    {t("experience.professional")}
-                  </span>
-                </div>
-              </AnimatedContent>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6" data-scroll data-scroll-speed="0.5">
-                <div data-scroll data-scroll-speed="0.3">
-                  <AnimatedContent
-                    direction="vertical"
-                    reverse={false}
-                    distance={40}
-                    duration={0.7}
-                    delay={0.3}
-                  >
-                    <Experience
-                      dateRange={`2025 - ${t("date.currently")}`}
-                      role={t("experience.mobileDeveloper")}
-                      company="SGBR SISTEMAS"
-                    />
-                  </AnimatedContent>
-                </div>
-                
-                <div data-scroll data-scroll-speed="0.3">
-                  <AnimatedContent
-                    direction="vertical"
-                    reverse={false}
-                    distance={40}
-                    duration={0.7}
-                    delay={0.4}
-                  >
-                    <Experience
-                      dateRange={`2023 - 2025`}
-                      role={`${t("education.developer")} - ${t("experience.senior")}`}
-                      company="ArgoTech"
-                    />
-                  </AnimatedContent>
-                </div>
+              <div className="mb-8">
+                <span className="text-purplePrimary text-sm font-bold uppercase tracking-widest px-4 py-2 bg-purplePrimary/10 rounded-full border border-purplePrimary/30">
+                  {t("experience.professional")}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Experience
+                  dateRange={`2025 - ${t("date.currently")}`}
+                  role={t("experience.mobileDeveloper")}
+                  company="SGBR SISTEMAS"
+                />
+                <Experience
+                  dateRange="2023 - 2025"
+                  role={`${t("education.developer")} - ${t("experience.senior")}`}
+                  company="ArgoTech"
+                />
               </div>
             </div>
 
-            {/* Educação */}
             <div>
-              <AnimatedContent
-                direction="horizontal"
-                reverse={true}
-                distance={30}
-                duration={0.6}
-                delay={0.5}
-                className="mb-8"
-              >
-                <div className="inline-block">
-                  <span className="text-purplePrimary text-sm font-bold uppercase tracking-widest px-4 py-2 bg-purplePrimary/10 rounded-full border border-purplePrimary/30">
-                    {t("experience.education")}
-                  </span>
-                </div>
-              </AnimatedContent>
-              
+              <div className="mb-8">
+                <span className="text-purplePrimary text-sm font-bold uppercase tracking-widest px-4 py-2 bg-purplePrimary/10 rounded-full border border-purplePrimary/30">
+                  {t("experience.education")}
+                </span>
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <AnimatedContent
-                  direction="vertical"
-                  reverse={false}
-                  distance={40}
-                  duration={0.7}
-                  delay={0.6}
-                >
-                  <Education
-                    dateRange={`2025 - ${t("date.inProgress")}`}
-                    course={t("education.bachelor")}
-                    institution="Estácio"
-                  />
-                </AnimatedContent>
-                
-                <AnimatedContent
-                  direction="vertical"
-                  reverse={false}
-                  distance={40}
-                  duration={0.7}
-                  delay={0.7}
-                >
-                  <Education
-                    dateRange={`2024 - ${t("date.onHold")}`}
-                    course={t("education.telecom")}
-                    institution="IFCE"
-                  />
-                </AnimatedContent>
-                
-                <AnimatedContent
-                  direction="vertical"
-                  reverse={false}
-                  distance={40}
-                  duration={0.7}
-                  delay={0.8}
-                >
-                  <Education
-                    dateRange="2021 - 2023"
-                    course={t("education.network")}
-                    institution="EEEP Leonel de Moura Brizola"
-                  />
-                </AnimatedContent>
-                
-                <AnimatedContent
-                  direction="vertical"
-                  reverse={false}
-                  distance={40}
-                  duration={0.7}
-                  delay={0.9}
-                >
-                  <Education
-                    dateRange="2023 - 2023"
-                    course={t("education.networking")}
-                    institution="IBSEC"
-                  />
-                </AnimatedContent>
-                
-                <AnimatedContent
-                  direction="vertical"
-                  reverse={false}
-                  distance={40}
-                  duration={0.7}
-                  delay={1.0}
-                >
-                  <Education
-                    dateRange="2022 - 2022"
-                    course={t("education.assembly")}
-                    institution="EEEP Leonel de Moura Brizola"
-                  />
-                </AnimatedContent>
-                
-                <AnimatedContent
-                  direction="vertical"
-                  reverse={false}
-                  distance={40}
-                  duration={0.7}
-                  delay={1.1}
-                >
-                  <Education
-                    dateRange="2021 - 2021"
-                    course={t("education.programming")}
-                    institution="EEEP Leonel de Moura Brizola"
-                  />
-                </AnimatedContent>
+                <Education
+                  dateRange={`2025 - ${t("date.inProgress")}`}
+                  course={t("education.bachelor")}
+                  institution="Estácio"
+                />
+                <Education
+                  dateRange={`2024 - ${t("date.onHold")}`}
+                  course={t("education.telecom")}
+                  institution="IFCE"
+                />
+                <Education
+                  dateRange="2021 - 2023"
+                  course={t("education.network")}
+                  institution="EEEP Leonel de Moura Brizola"
+                />
+                <Education
+                  dateRange="2023 - 2023"
+                  course={t("education.networking")}
+                  institution="IBSEC"
+                />
+                <Education
+                  dateRange="2022 - 2022"
+                  course={t("education.assembly")}
+                  institution="EEEP Leonel de Moura Brizola"
+                />
+                <Education
+                  dateRange="2021 - 2021"
+                  course={t("education.programming")}
+                  institution="EEEP Leonel de Moura Brizola"
+                />
               </div>
             </div>
           </div>

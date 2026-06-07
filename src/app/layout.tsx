@@ -3,7 +3,9 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Suspense } from "react";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { AccessibilityToolbar } from "@/components/AccessibilityToolbar";
 
 const poppins = Poppins({ subsets: ["latin"], weight: ['100', '200', '300', '400', '500'] });
 
@@ -81,15 +83,23 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="pt-BR">
-      <body className={poppins.className}>
+    <html lang="pt-BR" suppressHydrationWarning>
+      <body className={poppins.className} suppressHydrationWarning>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var s=JSON.parse(localStorage.getItem("accessibility-settings")||"{}");var h=document.documentElement;if([0,1,2].indexOf(s.fontSize)>-1)h.dataset.a11yFontSize=String(s.fontSize);if(s.highContrast)h.classList.add("a11y-high-contrast");if(s.reduceMotion)h.classList.add("a11y-reduce-motion");if(s.underlineLinks)h.classList.add("a11y-underline-links");if(s.readableFont)h.classList.add("a11y-readable-font");if(s.largeCursor)h.classList.add("a11y-large-cursor");if(s.highlightFocus)h.classList.add("a11y-highlight-focus");}catch(e){}})();`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <ErrorBoundary>
           <LanguageProvider>
-            <Suspense>{children}</Suspense>
+            <AccessibilityProvider>
+              <Suspense>{children}</Suspense>
+              <AccessibilityToolbar />
+            </AccessibilityProvider>
           </LanguageProvider>
         </ErrorBoundary>
       </body>

@@ -25,7 +25,8 @@ export const useSmoothScroll = () => {
       if (!scrollContainer) return;
 
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReducedMotion) return;
+      const userReducedMotion = document.documentElement.classList.contains('a11y-reduce-motion');
+      if (prefersReducedMotion || userReducedMotion) return;
 
       const LocomotiveScrollModule = (await import('locomotive-scroll')).default;
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
